@@ -1,0 +1,11 @@
+{
+  "name": "vitam-landing",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tailwindcss -i input.css -o ../assets/vitam.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  },
+  "private": true
+}
