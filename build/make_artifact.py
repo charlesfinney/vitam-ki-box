@@ -49,6 +49,9 @@ for vid in PAGES:
     body = body.replace(f'href="{vid}.html"', f'href="#{vid}"')
 body = body.replace('href="index.html#', 'href="#')
 body = body.replace('href="index.html"', 'href="#"')
+# The preview holds only the German pages: the EN / UA switcher opens the live site instead
+for lang in ('en', 'uk'):
+    body = body.replace(f'href="{lang}/index.html"', f'href="https://charlesfinney.github.io/vitam-ki-box/{lang}/" target="_blank" rel="noopener"')
 # No server behind a single file: drop the form endpoint (the demo script already prevents submit)
 body = body.replace(' action="/waitlist" method="post"', '')
 
@@ -91,7 +94,7 @@ img {{ max-width: 100%; }}
 '''
 
 # 1) Artifact fragment
-artifact = '<title>Vitam Box</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n' + style + body
+artifact = '<title>Vita Concierge</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n' + style + body
 (here / 'vitam-box-landing.html').write_text(artifact)
 
 # 2) Standalone document: reuse index.html's own <head> metadata, swap the stylesheet link for the inline style

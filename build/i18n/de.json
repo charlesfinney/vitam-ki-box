@@ -1,0 +1,38 @@
+{
+  "name": "Deutsch",
+  "label": "DE",
+  "lang_group": "Sprache",
+  "call": "Anrufen",
+  "menu": "Hauptmenü",
+  "menu_mobile": "Hauptmenü mobil",
+  "nav": [
+    {"href": "#box", "label": "Vita"},
+    {"href": "#artikel", "label": "Artikel"},
+    {"href": "#story", "label": "Unsere Story"},
+    {"href": "#faq", "label": "Fragen"}
+  ],
+  "cta": {"href": "#kaufen", "label": "Kaufen"},
+  "phone": "Telefon",
+  "email": "E-Mail",
+  "provider": "Anbieter",
+  "provider_name": "Vitam Box GbR, Charles Finney und Mathias Maurer",
+  "footer_buttons": [
+    {"href": "#kaufen", "label": "Jetzt kaufen"},
+    {"href": "#faq", "label": "Fragen"},
+    {"href": "#story", "label": "Unsere Story"}
+  ],
+  "footer_links": [
+    {"href": "#box", "label": "Vita"},
+    {"href": "#modelle", "label": "Freie Modelle"},
+    {"href": "#artikel", "label": "Artikel"},
+    {"href": "#preis", "label": "Preis"}
+  ],
+  "legal": [
+    {"href": "impressum.html", "label": "Impressum"},
+    {"href": "datenschutz.html", "label": "Datenschutz"}
+  ],
+  "no_tracking": "Keine Cookies · Kein Tracking · Keine Drittanbieter",
+  "social_label": "Soziale Medien (Profile folgen)",
+  "social_soon": "Profil folgt",
+  "top": "Nach oben"
+}

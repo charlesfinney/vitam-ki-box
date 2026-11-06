@@ -1,0 +1,46 @@
+  <!-- chrome:footer -->
+  <footer class="text-paper">
+    <div class="bg-muted">
+      <div class="max-w-6xl mx-auto px-5 pt-[74px] pb-16">
+        <span class="w-12 h-12 rounded-xl bg-paper text-slate flex items-center justify-center text-[22px] font-bold">V</span>
+        <p class="mt-6 text-[2.1rem] md:text-[2.5rem] font-light tracking-[0.04em]">Vita Concierge</p>
+        <p class="mt-3 text-[16px] leading-loose">Bürgerheimstraße 6, 10365 Berlin</p>
+        <dl class="mt-5 grid gap-2 text-[15px]">
+          <div class="flex gap-4"><dt class="w-[6em] shrink-0 text-paper/75">{{ t.phone }}</dt><dd><a href="tel:+491788080616" class="roll">+49 178 8080616</a></dd></div>
+          <div class="flex gap-4"><dt class="w-[6em] shrink-0 text-paper/75">{{ t.email }}</dt><dd><a href="mailto:hello@vitambox.de" class="roll">hello@vitambox.de</a></dd></div>
+          <div class="flex gap-4"><dt class="w-[6em] shrink-0 text-paper/75">{{ t.provider }}</dt><dd>{{ t.provider_name }}</dd></div>
+        </dl>
+{%- if t.footer_buttons %}
+        <div class="mt-10 flex flex-wrap gap-3">
+{%- for b in t.footer_buttons %}
+          <a href="{{ home }}{{ b.href }}" class="btn btn-ghost">{{ b.label }}</a>
+{%- endfor %}
+        </div>
+{%- endif %}
+{%- if t.footer_links %}
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[12px] tracking-[.01em]">
+{%- for l in t.footer_links %}
+          <a href="{{ home }}{{ l.href }}" class="roll roll-arrow">{{ l.label }}</a>
+{%- endfor %}
+        </div>
+{%- endif %}
+      </div>
+    </div>
+    <div class="bg-ink">
+      <div class="max-w-6xl mx-auto px-5 py-4 flex flex-wrap gap-x-8 gap-y-2 text-[14px]">
+{%- for l in t.legal %}
+        <a href="{{ root }}{{ l.href }}" class="roll"{% if l.get("hreflang") %} hreflang="{{ l.hreflang }}"{% endif %}>{{ l.label }}</a>
+{%- endfor %}
+        <span class="text-paper/60">{{ t.no_tracking }}</span>
+      </div>
+    </div>
+    <div class="bg-paper text-ink">
+      <div class="max-w-6xl mx-auto px-5 pt-6 pb-2 flex flex-wrap gap-3" aria-label="{{ t.social_label }}">
+{%- for s in ["LinkedIn", "Instagram", "YouTube", "X"] %}
+        <span class="rounded-ui border border-line px-4 py-1.5 text-[13px] transition-transform hover:scale-105" title="{{ t.social_soon }}">{{ s }}</span>
+{%- endfor %}
+      </div>
+      <p class="max-w-6xl mx-auto px-5 pt-5 pb-24 md:pb-6 text-[12px] tracking-[.01em]">© 2026 Vitam Box GbR · +49 178 8080616</p>
+    </div>
+  </footer>
+  <!-- /chrome:footer -->

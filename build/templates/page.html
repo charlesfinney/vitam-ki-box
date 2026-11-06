@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- Built by build/generate.py from build/content/{{ lang }}/{{ name }}. Edit the source, then rebuild. -->
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>{{ title }}</title>
+{%- if description %}
+  <meta name="description" content="{{ description }}" />
+{%- endif %}
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23424257'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='17' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EV%3C/text%3E%3C/svg%3E" />
+{%- for a in alternates %}
+  <link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ a.href }}" />
+{%- endfor %}
+  <link rel="stylesheet" href="{{ root }}assets/vitam.css" />
+</head>
+<body class="font-sans antialiased">
+
+{% include "top.html" %}
+{%- if divider %}
+  <div class="border-t border-line"></div>
+{%- endif %}
+
+  {{ main }}
+
+{% include "footer.html" %}
+
+  <a href="#" class="page-top" aria-label="{{ t.top }}">{{ t.top }}</a>
+
+  <script>
+    // "Nach oben": scroll by script, so it also works inside embedded previews
+    document.querySelector('.page-top').addEventListener('click', function (e) {
+      e.preventDefault();
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    // DEMO: Die Bestellung wird nicht gespeichert. Vor Livegang durch einen echten Checkout ersetzen (Button "zahlungspflichtig bestellen", AGB, Widerrufsbelehrung).
+    var orderForm = document.getElementById('order-form');
+    if (orderForm) orderForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      this.hidden = true;
+      document.getElementById('order-thanks').hidden = false;
+    });
+  </script>
+</body>
+</html>

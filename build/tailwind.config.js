@@ -1,6 +1,7 @@
-/** Vitam Box landing page — tokens from UI-design.html (see decisions-and-prelaunch.md, item 8) */
+/** Vita Concierge site — tokens from UI-design.html (see decisions-and-prelaunch.md, item 8) */
 module.exports = {
-  content: ['../index.html', '../impressum.html', '../datenschutz.html', '../artikel-*.html'],
+  // Scan the sources the generator builds from, so classes in any language are kept.
+  content: ['./templates/**/*.html', './content/**/*.html'],
   theme: {
     extend: {
       colors: {

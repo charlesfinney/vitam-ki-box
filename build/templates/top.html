@@ -1,0 +1,53 @@
+{% from "flags.html" import flag %}  <!-- chrome:top -->
+  <!-- Black top bar: languages and phone -->
+  <div class="bg-ink text-paper text-[13px]">
+    <div class="max-w-6xl mx-auto px-5 h-11 flex items-center justify-end gap-5">
+      <div class="flex items-center gap-4" role="group" aria-label="{{ t.lang_group }}">
+{%- for l in switcher %}
+{%- if l.current %}
+        <span class="flex items-center gap-1.5 font-medium" aria-current="true">
+          {{ flag(l.code) }}{{ l.label }}
+        </span>
+{%- else %}
+        <a href="{{ l.href }}" hreflang="{{ l.code }}" lang="{{ l.code }}" class="flex items-center gap-1.5 opacity-70 hover:opacity-100" title="{{ l.name }}">
+          {{ flag(l.code) }}{{ l.label }}
+        </a>
+{%- endif %}
+{%- endfor %}
+      </div>
+      <a href="tel:+491788080616" class="flex items-center gap-2 rounded-ui bg-paper text-ink px-3.5 py-1.5 hover:bg-line transition-colors">
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.5l1.8 4.6-2.3 1.4a11.5 11.5 0 0 0 5.5 5.5l1.4-2.3 4.6 1.8V18a2 2 0 0 1-2 2A16.5 16.5 0 0 1 3 5.5a2 2 0 0 1 2-2z" /></svg>
+        <span class="hidden sm:inline">+49 178 8080616</span><span class="sm:hidden">{{ t.call }}</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Header: wordmark, four links, one action -->
+  <header class="bg-paper">
+    <div class="max-w-6xl mx-auto px-5 h-20 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex items-center gap-2.5 text-[22px] font-medium tracking-[0.08em]">
+        <span class="w-7 h-7 rounded-lg bg-slate text-paper flex items-center justify-center text-sm font-bold tracking-normal">V</span>
+        VITA
+      </a>
+{%- if t.nav or t.cta %}
+      <nav aria-label="{{ t.menu }}" class="flex items-center gap-8 text-[15px]">
+{%- for n in t.nav %}
+        <a href="{{ home }}{{ n.href }}" class="roll hidden md:inline">{{ n.label }}</a>
+{%- endfor %}
+{%- if t.cta %}
+        <a href="{{ home }}{{ t.cta.href }}" class="btn btn-dark !px-4 !py-2 text-[13px]">{{ t.cta.label }}</a>
+{%- endif %}
+      </nav>
+{%- endif %}
+    </div>
+{%- if t.nav %}
+    <nav aria-label="{{ t.menu_mobile }}" class="md:hidden border-t border-line">
+      <ul class="grid grid-cols-4 text-center text-[13px]">
+{%- for n in t.nav %}
+        <li{% if not loop.first %} class="border-l border-line"{% endif %}><a href="{{ home }}{{ n.href }}" class="block py-3">{{ n.label }}</a></li>
+{%- endfor %}
+      </ul>
+    </nav>
+{%- endif %}
+  </header>
+  <!-- /chrome:top -->

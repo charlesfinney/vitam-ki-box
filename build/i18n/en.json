@@ -1,0 +1,24 @@
+{
+  "name": "English",
+  "label": "EN",
+  "lang_group": "Language",
+  "call": "Call",
+  "menu": "Main menu",
+  "menu_mobile": "Main menu, mobile",
+  "nav": [],
+  "cta": null,
+  "phone": "Phone",
+  "email": "Email",
+  "provider": "Company",
+  "provider_name": "Vitam Box GbR, Charles Finney and Mathias Maurer",
+  "footer_buttons": [],
+  "footer_links": [],
+  "legal": [
+    {"href": "impressum.html", "label": "Legal notice (German)", "hreflang": "de"},
+    {"href": "datenschutz.html", "label": "Privacy (German)", "hreflang": "de"}
+  ],
+  "no_tracking": "No cookies · No tracking · No third parties",
+  "social_label": "Social media (profiles to follow)",
+  "social_soon": "Profile coming soon",
+  "top": "Back to top"
+}
