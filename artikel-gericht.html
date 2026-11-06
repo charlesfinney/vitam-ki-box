@@ -8,6 +8,18 @@
   <title>Kein Berufsgeheimnis für Chatbots — Vita Concierge</title>
   <meta name="description" content="Was Sie Anwalt oder Ärztin sagen, ist geschützt. Was Sie einer Cloud-KI sagen, nicht. Selbst OpenAI-Chef Sam Altman warnt: Vor Gericht können Chats herausverlangt werden." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23424257'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='17' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EV%3C/text%3E%3C/svg%3E" />
+  <!-- Share card for messaging apps (image: build/make_og.py) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vita Concierge" />
+  <meta property="og:title" content="Kein Berufsgeheimnis für Chatbots — Vita Concierge" />
+  <meta property="og:description" content="Was Sie Anwalt oder Ärztin sagen, ist geschützt. Was Sie einer Cloud-KI sagen, nicht. Selbst OpenAI-Chef Sam Altman warnt: Vor Gericht können Chats herausverlangt werden." />
+  <meta property="og:url" content="https://charlesfinney.github.io/vitam-ki-box/artikel-gericht.html" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:image" content="https://charlesfinney.github.io/vitam-ki-box/assets/img/og-de.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Vita Concierge: Ihre eigene KI im Koffer. Einmal zahlen, für immer nutzen." />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="assets/vitam.css" />
 </head>
 <body class="font-sans antialiased">
@@ -129,12 +141,71 @@
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
     // DEMO: Die Bestellung wird nicht gespeichert. Vor Livegang durch einen echten Checkout ersetzen (Button "zahlungspflichtig bestellen", AGB, Widerrufsbelehrung).
+    // Order flow: one question per screen. Without JavaScript all questions stay visible in one form.
     var orderForm = document.getElementById('order-form');
-    if (orderForm) orderForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      this.hidden = true;
-      document.getElementById('order-thanks').hidden = false;
-    });
+    if (orderForm) (function () {
+      var steps = [].slice.call(orderForm.querySelectorAll('.order-step'));
+      var bar = document.getElementById('order-progress');
+      var segs = [].slice.call(bar.querySelectorAll('[data-seg]'));
+      var count = document.getElementById('order-count');
+      var current = 0;
+      [].forEach.call(orderForm.querySelectorAll('[data-navrow], [data-summary-list]'), function (el) { el.hidden = false; });
+      bar.hidden = false;
+
+      function fields(i) { return [].slice.call(steps[i].querySelectorAll('input, textarea')); }
+      function valid(i) {
+        var bad = fields(i).filter(function (f) { return !f.checkValidity(); })[0];
+        if (bad) { bad.reportValidity(); bad.focus(); return false; }
+        return true;
+      }
+      function summary() {
+        var ram = orderForm.querySelector('input[name="ram"]:checked');
+        var text = {
+          ram: ram ? ram.parentNode.innerText.replace(/\s+/g, ' ').trim().replace(/ (\d)/, ' · $1') : '',
+          use: orderForm.elements.use.value.trim() || '—',
+          plz: orderForm.elements.plz.value.trim(),
+          name: orderForm.elements.name.value.trim(),
+          phone: orderForm.elements.phone.value.trim(),
+          email: orderForm.elements.email.value.trim()
+        };
+        [].forEach.call(orderForm.querySelectorAll('[data-sum]'), function (el) { el.textContent = text[el.getAttribute('data-sum')]; });
+      }
+      function show(i, focus) {
+        current = i;
+        steps.forEach(function (s, k) { s.hidden = k !== i; });
+        segs.forEach(function (s, k) { s.classList.toggle('bg-paper', k <= i); s.classList.toggle('bg-paper/25', k > i); });
+        count.textContent = (i + 1) + '/' + steps.length;
+        bar.setAttribute('aria-valuenow', i + 1);
+        if (steps[i].hasAttribute('data-summary')) summary();
+        if (focus) steps[i].querySelector('h3').focus();
+      }
+
+      orderForm.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-nav]');
+        if (!b) return;
+        var to = b.getAttribute('data-nav');
+        if (to === 'next') { if (valid(current)) show(current + 1, true); }
+        else if (to === 'back') show(current - 1, true);
+        else show(parseInt(to, 10), true);
+      });
+      orderForm.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' || e.target.tagName !== 'INPUT' || current === steps.length - 1) return;
+        e.preventDefault();
+        if (valid(current)) show(current + 1, true);
+      });
+      orderForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        for (var i = 0; i < steps.length; i++) {
+          if (fields(i).some(function (f) { return !f.checkValidity(); })) { show(i, false); valid(i); return; }
+        }
+        orderForm.hidden = true;
+        var thanks = document.getElementById('order-thanks');
+        thanks.hidden = false;
+        thanks.setAttribute('tabindex', '-1');
+        thanks.focus();
+      });
+      show(0, false);
+    })();
   </script>
 </body>
 </html>

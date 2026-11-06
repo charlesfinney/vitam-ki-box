@@ -14,6 +14,7 @@ Live: https://charlesfinney.github.io/vitam-ki-box/ (German), `/en/` (English) a
    - `i18n/<lang>.json`: top bar, header and footer text per language.
    - `templates/`: page shell, top bar and header, footer, flags. Written once for all languages.
    - `generate.py` builds the pages; Tailwind builds `assets/vitam.css`; `make_artifact.py` builds a single-file preview.
+   - `make_og.py` renders the share cards that messaging apps show for a link (`assets/img/og-de|en|uk.png`, 1200 × 630) from `og/card.html` and the `og` text in `i18n/<lang>.json`. Run it only when that text or look changes.
 
 ## Editing
 1. Edit the source in `build/content/`, `build/i18n/` or `build/templates/`.

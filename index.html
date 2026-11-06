@@ -12,6 +12,18 @@
   <link rel="alternate" hreflang="en" href="https://charlesfinney.github.io/vitam-ki-box/en/" />
   <link rel="alternate" hreflang="uk" href="https://charlesfinney.github.io/vitam-ki-box/uk/" />
   <link rel="alternate" hreflang="x-default" href="https://charlesfinney.github.io/vitam-ki-box/" />
+  <!-- Share card for messaging apps (image: build/make_og.py) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vita Concierge" />
+  <meta property="og:title" content="Vita Concierge — KI im Koffer. Daten im Haus." />
+  <meta property="og:description" content="Vita Concierge: Ihre eigene KI im Koffer. Einmal zahlen, für immer nutzen. Keine Monatsrechnung, keine Cloud, freie Modelle, voller Service. Ab 3.299 € inkl. MwSt." />
+  <meta property="og:url" content="https://charlesfinney.github.io/vitam-ki-box/" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:image" content="https://charlesfinney.github.io/vitam-ki-box/assets/img/og-de.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Vita Concierge: Ihre eigene KI im Koffer. Einmal zahlen, für immer nutzen." />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="assets/vitam.css" />
 </head>
 <body class="font-sans antialiased">
@@ -606,7 +618,18 @@
       <div class="max-w-xl mx-auto px-5 py-20">
         <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-3 text-center">Ihre Vita bestellen.</h2>
         <p class="text-[16px] text-paper/75 mb-10 text-center">Wir bauen in kleinen Serien. Lieferung in 3–5 Wochen, und bei jedem Schritt hören Sie von uns.</p>
-        <form id="order-form" class="grid gap-5 text-left">
+        <!-- Bestellung in sieben Schritten: eine Frage pro Bildschirm (Schwartz/Iyengar), Fortschritt immer sichtbar (Sutherland).
+             Ohne JavaScript stehen alle Fragen untereinander. -->
+        <form id="order-form" class="grid gap-10 text-left" novalidate>
+          <div id="order-progress" class="flex items-center justify-center gap-3" role="progressbar" aria-label="Fortschritt der Bestellung" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1" hidden>
+            <span class="flex gap-1.5" aria-hidden="true"><span data-seg class="block w-6 h-1 rounded-full bg-paper"></span><span data-seg class="block w-6 h-1 rounded-full bg-paper/25"></span><span data-seg class="block w-6 h-1 rounded-full bg-paper/25"></span><span data-seg class="block w-6 h-1 rounded-full bg-paper/25"></span><span data-seg class="block w-6 h-1 rounded-full bg-paper/25"></span><span data-seg class="block w-6 h-1 rounded-full bg-paper/25"></span><span data-seg class="block w-6 h-1 rounded-full bg-paper/25"></span></span>
+            <span id="order-count" class="text-[13px] tabular-nums text-paper/70">1/7</span>
+          </div>
+
+          <!-- 1 · Ausstattung -->
+          <section class="order-step" aria-labelledby="order-h1">
+            <p class="text-[12px] uppercase tracking-[.14em] text-paper/60 mb-3">Ausstattung</p>
+            <h3 id="order-h1" tabindex="-1" class="text-[1.7rem] md:text-[2.2rem] font-light leading-tight mb-6 focus:outline-none">Wie viel Vita brauchen Sie?</h3>
           <fieldset class="grid grid-cols-2 gap-3">
             <legend class="sr-only">Arbeitsspeicher wählen</legend>
             <label class="cursor-pointer">
@@ -624,17 +647,90 @@
               </span>
             </label>
           </fieldset>
-          <p class="text-[13px] text-paper/70 -mt-2"><span class="egg" tabindex="0">Bewusst nur zwei.<span class="egg-tip" role="tooltip">Im Marmeladen-Experiment von Sheena Iyengar (2000) kauften Kunden bei 6 Sorten rund zehnmal häufiger als bei 24. Barry Schwartz nennt das das Paradox der Wahl. Darum: zwei Ausstattungen, keine 24.</span></span> Unsicher? 64 GB reichen für die tägliche Arbeit.</p>
-          <div class="grid gap-3">
-            <label for="order-name" class="sr-only">Name</label>
-            <input id="order-name" name="name" type="text" required autocomplete="name" placeholder="Name" class="px-5 py-3 rounded-ui bg-paper text-ink placeholder:text-muted text-[15px] focus:outline-none" />
-            <label for="order-email" class="sr-only">E-Mail-Adresse</label>
-            <input id="order-email" name="email" type="email" required autocomplete="email" placeholder="E-Mail" class="px-5 py-3 rounded-ui bg-paper text-ink placeholder:text-muted text-[15px] focus:outline-none" />
-            <label for="order-phone" class="sr-only">Telefon</label>
-            <input id="order-phone" name="phone" type="tel" required autocomplete="tel" placeholder="Telefon" class="px-5 py-3 rounded-ui bg-paper text-ink placeholder:text-muted text-[15px] focus:outline-none" />
-          </div>
-          <button type="submit" class="btn bg-paper text-ink hover:bg-line w-full">Jetzt bestellen</button>
-          <p class="text-[13px] text-paper/70 text-center">Inkl. MwSt., Lieferung, Einrichtung und Service. Wir rufen Sie am nächsten Werktag bis 12 Uhr an und vereinbaren den Liefertermin.</p>
+          <p class="text-[13px] text-paper/70 mt-3"><span class="egg" tabindex="0">Bewusst nur zwei.<span class="egg-tip" role="tooltip">Im Marmeladen-Experiment von Sheena Iyengar (2000) kauften Kunden bei 6 Sorten rund zehnmal häufiger als bei 24. Barry Schwartz nennt das das Paradox der Wahl. Darum: zwei Ausstattungen, keine 24.</span></span> Unsicher? 64 GB reichen für die tägliche Arbeit.</p>
+            <div class="flex items-center gap-6 mt-8" data-navrow hidden>
+              <button type="button" data-nav="next" class="btn bg-paper text-ink hover:bg-line">Weiter</button>
+            </div>
+          </section>
+
+          <!-- 2 · Wofür (freiwillig) -->
+          <section class="order-step" aria-labelledby="order-h2">
+            <p class="text-[12px] uppercase tracking-[.14em] text-paper/60 mb-3">Wofür</p>
+            <h3 id="order-h2" tabindex="-1" class="text-[1.7rem] md:text-[2.2rem] font-light leading-tight mb-6 focus:outline-none"><label for="order-use">Was soll Vita für Sie erledigen?</label></h3>
+            <textarea id="order-use" name="use" rows="3" maxlength="300" placeholder="Zum Beispiel: Akten zusammenfassen und Briefe diktieren." class="w-full px-5 py-4 rounded-ui bg-paper text-ink placeholder:text-muted text-[17px] focus:outline-none focus-visible:ring-2 focus-visible:ring-focus" aria-describedby="order-use-hint"></textarea>
+            <p id="order-use-hint" class="text-[13px] text-paper/70 mt-3">Ein Satz genügt, und Sie dürfen das Feld auch leer lassen. So können wir uns auf den Termin bei Ihnen vorbereiten.</p>
+            <div class="flex items-center gap-6 mt-8" data-navrow hidden>
+              <button type="button" data-nav="next" class="btn bg-paper text-ink hover:bg-line">Weiter</button>
+              <button type="button" data-nav="back" class="roll text-[15px] text-paper/80">Zurück</button>
+            </div>
+          </section>
+
+          <!-- 3 · Lieferung -->
+          <section class="order-step" aria-labelledby="order-h3">
+            <p class="text-[12px] uppercase tracking-[.14em] text-paper/60 mb-3">Lieferung</p>
+            <h3 id="order-h3" tabindex="-1" class="text-[1.7rem] md:text-[2.2rem] font-light leading-tight mb-6 focus:outline-none"><label for="order-plz">Wohin dürfen wir Vita bringen?</label></h3>
+            <input id="order-plz" name="plz" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required autocomplete="postal-code" placeholder="Postleitzahl" class="w-full px-5 py-4 rounded-ui bg-paper text-ink placeholder:text-muted text-[17px] tabular-nums focus:outline-none focus-visible:ring-2 focus-visible:ring-focus" aria-describedby="order-plz-hint" />
+            <p id="order-plz-hint" class="text-[13px] text-paper/70 mt-3">Nur die Postleitzahl. Alles Weitere besprechen wir am Telefon.</p>
+            <div class="flex items-center gap-6 mt-8" data-navrow hidden>
+              <button type="button" data-nav="next" class="btn bg-paper text-ink hover:bg-line">Weiter</button>
+              <button type="button" data-nav="back" class="roll text-[15px] text-paper/80">Zurück</button>
+            </div>
+          </section>
+
+          <!-- 4 · Name -->
+          <section class="order-step" aria-labelledby="order-h4">
+            <p class="text-[12px] uppercase tracking-[.14em] text-paper/60 mb-3">Ihr Name</p>
+            <h3 id="order-h4" tabindex="-1" class="text-[1.7rem] md:text-[2.2rem] font-light leading-tight mb-6 focus:outline-none"><label for="order-name">Wie dürfen wir Sie ansprechen?</label></h3>
+            <input id="order-name" name="name" type="text" required autocomplete="name" placeholder="Vor- und Nachname" class="w-full px-5 py-4 rounded-ui bg-paper text-ink placeholder:text-muted text-[17px] focus:outline-none focus-visible:ring-2 focus-visible:ring-focus" aria-describedby="order-name-hint" />
+            <p id="order-name-hint" class="text-[13px] text-paper/70 mt-3">So steht es später auch in Ihrem Serviceheft.</p>
+            <div class="flex items-center gap-6 mt-8" data-navrow hidden>
+              <button type="button" data-nav="next" class="btn bg-paper text-ink hover:bg-line">Weiter</button>
+              <button type="button" data-nav="back" class="roll text-[15px] text-paper/80">Zurück</button>
+            </div>
+          </section>
+
+          <!-- 5 · Rückruf -->
+          <section class="order-step" aria-labelledby="order-h5">
+            <p class="text-[12px] uppercase tracking-[.14em] text-paper/60 mb-3">Rückruf</p>
+            <h3 id="order-h5" tabindex="-1" class="text-[1.7rem] md:text-[2.2rem] font-light leading-tight mb-6 focus:outline-none"><label for="order-phone">Unter welcher Nummer erreichen wir Sie?</label></h3>
+            <input id="order-phone" name="phone" type="tel" required autocomplete="tel" placeholder="Telefon" class="w-full px-5 py-4 rounded-ui bg-paper text-ink placeholder:text-muted text-[17px] focus:outline-none focus-visible:ring-2 focus-visible:ring-focus" aria-describedby="order-phone-hint" />
+            <p id="order-phone-hint" class="text-[13px] text-paper/70 mt-3">Wir rufen Sie am nächsten Werktag bis 12 Uhr an. Kein Callcenter, sondern einer von uns beiden.</p>
+            <div class="flex items-center gap-6 mt-8" data-navrow hidden>
+              <button type="button" data-nav="next" class="btn bg-paper text-ink hover:bg-line">Weiter</button>
+              <button type="button" data-nav="back" class="roll text-[15px] text-paper/80">Zurück</button>
+            </div>
+          </section>
+
+          <!-- 6 · E-Mail -->
+          <section class="order-step" aria-labelledby="order-h6">
+            <p class="text-[12px] uppercase tracking-[.14em] text-paper/60 mb-3">E-Mail</p>
+            <h3 id="order-h6" tabindex="-1" class="text-[1.7rem] md:text-[2.2rem] font-light leading-tight mb-6 focus:outline-none"><label for="order-email">Wohin dürfen wir das Foto vom Prüftisch schicken?</label></h3>
+            <input id="order-email" name="email" type="email" required autocomplete="email" placeholder="E-Mail-Adresse" class="w-full px-5 py-4 rounded-ui bg-paper text-ink placeholder:text-muted text-[17px] focus:outline-none focus-visible:ring-2 focus-visible:ring-focus" aria-describedby="order-email-hint" />
+            <p id="order-email-hint" class="text-[13px] text-paper/70 mt-3">Dorthin kommt auch Ihre Bestellbestätigung.</p>
+            <div class="flex items-center gap-6 mt-8" data-navrow hidden>
+              <button type="button" data-nav="next" class="btn bg-paper text-ink hover:bg-line">Weiter</button>
+              <button type="button" data-nav="back" class="roll text-[15px] text-paper/80">Zurück</button>
+            </div>
+          </section>
+
+          <!-- 7 · Überblick -->
+          <section class="order-step" data-summary aria-labelledby="order-h7">
+            <p class="text-[12px] uppercase tracking-[.14em] text-paper/60 mb-3">Überblick</p>
+            <h3 id="order-h7" tabindex="-1" class="text-[1.7rem] md:text-[2.2rem] font-light leading-tight mb-6 focus:outline-none">Stimmt alles?</h3>
+            <dl class="rounded-ui border border-paper/30 px-5 text-[15px] mb-8" data-summary-list hidden>
+              <div class="flex items-baseline gap-4 py-3 border-b border-paper/20"><dt class="w-28 shrink-0 text-paper/70">Ausstattung</dt><dd class="flex-1 min-w-0 break-words" data-sum="ram"></dd><dd><button type="button" data-nav="0" class="roll text-[13px] text-paper/70">Ändern</button></dd></div>
+              <div class="flex items-baseline gap-4 py-3 border-b border-paper/20"><dt class="w-28 shrink-0 text-paper/70">Wofür</dt><dd class="flex-1 min-w-0 break-words" data-sum="use"></dd><dd><button type="button" data-nav="1" class="roll text-[13px] text-paper/70">Ändern</button></dd></div>
+              <div class="flex items-baseline gap-4 py-3 border-b border-paper/20"><dt class="w-28 shrink-0 text-paper/70">Lieferung</dt><dd class="flex-1 min-w-0 break-words" data-sum="plz"></dd><dd><button type="button" data-nav="2" class="roll text-[13px] text-paper/70">Ändern</button></dd></div>
+              <div class="flex items-baseline gap-4 py-3 border-b border-paper/20"><dt class="w-28 shrink-0 text-paper/70">Name</dt><dd class="flex-1 min-w-0 break-words" data-sum="name"></dd><dd><button type="button" data-nav="3" class="roll text-[13px] text-paper/70">Ändern</button></dd></div>
+              <div class="flex items-baseline gap-4 py-3 border-b border-paper/20"><dt class="w-28 shrink-0 text-paper/70">Telefon</dt><dd class="flex-1 min-w-0 break-words" data-sum="phone"></dd><dd><button type="button" data-nav="4" class="roll text-[13px] text-paper/70">Ändern</button></dd></div>
+              <div class="flex items-baseline gap-4 py-3"><dt class="w-28 shrink-0 text-paper/70">E-Mail</dt><dd class="flex-1 min-w-0 break-words" data-sum="email"></dd><dd><button type="button" data-nav="5" class="roll text-[13px] text-paper/70">Ändern</button></dd></div>
+            </dl>
+            <button type="submit" class="btn bg-paper text-ink hover:bg-line w-full">Jetzt bestellen</button>
+            <p class="text-[13px] text-paper/70 text-center mt-4">Inkl. MwSt., Lieferung, Einrichtung und Service. Wir rufen Sie am nächsten Werktag bis 12 Uhr an und vereinbaren den Liefertermin.</p>
+            <div class="flex justify-center mt-6" data-navrow hidden>
+              <button type="button" data-nav="back" class="roll text-[15px] text-paper/80">Zurück</button>
+            </div>
+          </section>
         </form>
         <div id="order-thanks" class="text-center" hidden>
           <p class="inline-block rounded-ui border border-paper/40 px-3 py-1 text-[12px] text-paper/80 mb-4">Demo · Diese Vorschau nimmt noch keine Bestellungen an, es wurde nichts gesendet.</p>
@@ -708,12 +804,71 @@
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
     // DEMO: Die Bestellung wird nicht gespeichert. Vor Livegang durch einen echten Checkout ersetzen (Button "zahlungspflichtig bestellen", AGB, Widerrufsbelehrung).
+    // Order flow: one question per screen. Without JavaScript all questions stay visible in one form.
     var orderForm = document.getElementById('order-form');
-    if (orderForm) orderForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      this.hidden = true;
-      document.getElementById('order-thanks').hidden = false;
-    });
+    if (orderForm) (function () {
+      var steps = [].slice.call(orderForm.querySelectorAll('.order-step'));
+      var bar = document.getElementById('order-progress');
+      var segs = [].slice.call(bar.querySelectorAll('[data-seg]'));
+      var count = document.getElementById('order-count');
+      var current = 0;
+      [].forEach.call(orderForm.querySelectorAll('[data-navrow], [data-summary-list]'), function (el) { el.hidden = false; });
+      bar.hidden = false;
+
+      function fields(i) { return [].slice.call(steps[i].querySelectorAll('input, textarea')); }
+      function valid(i) {
+        var bad = fields(i).filter(function (f) { return !f.checkValidity(); })[0];
+        if (bad) { bad.reportValidity(); bad.focus(); return false; }
+        return true;
+      }
+      function summary() {
+        var ram = orderForm.querySelector('input[name="ram"]:checked');
+        var text = {
+          ram: ram ? ram.parentNode.innerText.replace(/\s+/g, ' ').trim().replace(/ (\d)/, ' · $1') : '',
+          use: orderForm.elements.use.value.trim() || '—',
+          plz: orderForm.elements.plz.value.trim(),
+          name: orderForm.elements.name.value.trim(),
+          phone: orderForm.elements.phone.value.trim(),
+          email: orderForm.elements.email.value.trim()
+        };
+        [].forEach.call(orderForm.querySelectorAll('[data-sum]'), function (el) { el.textContent = text[el.getAttribute('data-sum')]; });
+      }
+      function show(i, focus) {
+        current = i;
+        steps.forEach(function (s, k) { s.hidden = k !== i; });
+        segs.forEach(function (s, k) { s.classList.toggle('bg-paper', k <= i); s.classList.toggle('bg-paper/25', k > i); });
+        count.textContent = (i + 1) + '/' + steps.length;
+        bar.setAttribute('aria-valuenow', i + 1);
+        if (steps[i].hasAttribute('data-summary')) summary();
+        if (focus) steps[i].querySelector('h3').focus();
+      }
+
+      orderForm.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-nav]');
+        if (!b) return;
+        var to = b.getAttribute('data-nav');
+        if (to === 'next') { if (valid(current)) show(current + 1, true); }
+        else if (to === 'back') show(current - 1, true);
+        else show(parseInt(to, 10), true);
+      });
+      orderForm.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' || e.target.tagName !== 'INPUT' || current === steps.length - 1) return;
+        e.preventDefault();
+        if (valid(current)) show(current + 1, true);
+      });
+      orderForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        for (var i = 0; i < steps.length; i++) {
+          if (fields(i).some(function (f) { return !f.checkValidity(); })) { show(i, false); valid(i); return; }
+        }
+        orderForm.hidden = true;
+        var thanks = document.getElementById('order-thanks');
+        thanks.hidden = false;
+        thanks.setAttribute('tabindex', '-1');
+        thanks.focus();
+      });
+      show(0, false);
+    })();
   </script>
 </body>
 </html>

@@ -14,11 +14,26 @@
   "footer_buttons": [],
   "footer_links": [],
   "legal": [
-    {"href": "impressum.html", "label": "Legal notice (German)", "hreflang": "de"},
-    {"href": "datenschutz.html", "label": "Privacy (German)", "hreflang": "de"}
+    {
+      "href": "impressum.html",
+      "label": "Legal notice (German)",
+      "hreflang": "de"
+    },
+    {
+      "href": "datenschutz.html",
+      "label": "Privacy (German)",
+      "hreflang": "de"
+    }
   ],
   "no_tracking": "No cookies · No tracking · No third parties",
   "social_label": "Social media (profiles to follow)",
   "social_soon": "Profile coming soon",
-  "top": "Back to top"
+  "top": "Back to top",
+  "og": {
+    "headline": "Your own AI.<br>In a case.",
+    "sub": "Pay once and it's yours for good.<br>Nothing you tell it leaves the case.",
+    "chip": "No subscription. No cloud.",
+    "alt": "Vita Concierge: your own AI in a case. Pay once and it's yours for good.",
+    "locale": "en_GB"
+  }
 }

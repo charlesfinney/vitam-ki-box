@@ -14,11 +14,26 @@
   "footer_buttons": [],
   "footer_links": [],
   "legal": [
-    {"href": "impressum.html", "label": "Імпресум (німецькою)", "hreflang": "de"},
-    {"href": "datenschutz.html", "label": "Захист даних (німецькою)", "hreflang": "de"}
+    {
+      "href": "impressum.html",
+      "label": "Імпресум (німецькою)",
+      "hreflang": "de"
+    },
+    {
+      "href": "datenschutz.html",
+      "label": "Захист даних (німецькою)",
+      "hreflang": "de"
+    }
   ],
   "no_tracking": "Без cookie · Без стеження · Без сторонніх сервісів",
   "social_label": "Соцмережі (профілі незабаром)",
   "social_soon": "Профіль незабаром",
-  "top": "Нагору"
+  "top": "Нагору",
+  "og": {
+    "headline": "Ваш власний ШІ.<br>У валізі.",
+    "sub": "Платите один раз, і він ваш назавжди.<br>Ваші дані не залишають валізу.",
+    "chip": "Без підписки. Без хмари.",
+    "alt": "Vita Concierge: ваш власний ШІ у валізі. Платите один раз, і він ваш назавжди.",
+    "locale": "uk_UA"
+  }
 }

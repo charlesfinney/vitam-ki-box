@@ -12,6 +12,18 @@
   <link rel="alternate" hreflang="en" href="https://charlesfinney.github.io/vitam-ki-box/en/" />
   <link rel="alternate" hreflang="uk" href="https://charlesfinney.github.io/vitam-ki-box/uk/" />
   <link rel="alternate" hreflang="x-default" href="https://charlesfinney.github.io/vitam-ki-box/" />
+  <!-- Share card for messaging apps (image: build/make_og.py) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vita Concierge" />
+  <meta property="og:title" content="Vita Concierge — ваш власний ШІ у валізі" />
+  <meta property="og:description" content="Vita Concierge — ваш власний ШІ у міцній валізі. Платите один раз, і він ваш назавжди. Українська версія сайту готується." />
+  <meta property="og:url" content="https://charlesfinney.github.io/vitam-ki-box/uk/" />
+  <meta property="og:locale" content="uk_UA" />
+  <meta property="og:image" content="https://charlesfinney.github.io/vitam-ki-box/assets/img/og-uk.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Vita Concierge: ваш власний ШІ у валізі. Платите один раз, і він ваш назавжди." />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../assets/vitam.css" />
 </head>
 <body class="font-sans antialiased">
@@ -108,12 +120,71 @@
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
     // DEMO: Die Bestellung wird nicht gespeichert. Vor Livegang durch einen echten Checkout ersetzen (Button "zahlungspflichtig bestellen", AGB, Widerrufsbelehrung).
+    // Order flow: one question per screen. Without JavaScript all questions stay visible in one form.
     var orderForm = document.getElementById('order-form');
-    if (orderForm) orderForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      this.hidden = true;
-      document.getElementById('order-thanks').hidden = false;
-    });
+    if (orderForm) (function () {
+      var steps = [].slice.call(orderForm.querySelectorAll('.order-step'));
+      var bar = document.getElementById('order-progress');
+      var segs = [].slice.call(bar.querySelectorAll('[data-seg]'));
+      var count = document.getElementById('order-count');
+      var current = 0;
+      [].forEach.call(orderForm.querySelectorAll('[data-navrow], [data-summary-list]'), function (el) { el.hidden = false; });
+      bar.hidden = false;
+
+      function fields(i) { return [].slice.call(steps[i].querySelectorAll('input, textarea')); }
+      function valid(i) {
+        var bad = fields(i).filter(function (f) { return !f.checkValidity(); })[0];
+        if (bad) { bad.reportValidity(); bad.focus(); return false; }
+        return true;
+      }
+      function summary() {
+        var ram = orderForm.querySelector('input[name="ram"]:checked');
+        var text = {
+          ram: ram ? ram.parentNode.innerText.replace(/\s+/g, ' ').trim().replace(/ (\d)/, ' · $1') : '',
+          use: orderForm.elements.use.value.trim() || '—',
+          plz: orderForm.elements.plz.value.trim(),
+          name: orderForm.elements.name.value.trim(),
+          phone: orderForm.elements.phone.value.trim(),
+          email: orderForm.elements.email.value.trim()
+        };
+        [].forEach.call(orderForm.querySelectorAll('[data-sum]'), function (el) { el.textContent = text[el.getAttribute('data-sum')]; });
+      }
+      function show(i, focus) {
+        current = i;
+        steps.forEach(function (s, k) { s.hidden = k !== i; });
+        segs.forEach(function (s, k) { s.classList.toggle('bg-paper', k <= i); s.classList.toggle('bg-paper/25', k > i); });
+        count.textContent = (i + 1) + '/' + steps.length;
+        bar.setAttribute('aria-valuenow', i + 1);
+        if (steps[i].hasAttribute('data-summary')) summary();
+        if (focus) steps[i].querySelector('h3').focus();
+      }
+
+      orderForm.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-nav]');
+        if (!b) return;
+        var to = b.getAttribute('data-nav');
+        if (to === 'next') { if (valid(current)) show(current + 1, true); }
+        else if (to === 'back') show(current - 1, true);
+        else show(parseInt(to, 10), true);
+      });
+      orderForm.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' || e.target.tagName !== 'INPUT' || current === steps.length - 1) return;
+        e.preventDefault();
+        if (valid(current)) show(current + 1, true);
+      });
+      orderForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        for (var i = 0; i < steps.length; i++) {
+          if (fields(i).some(function (f) { return !f.checkValidity(); })) { show(i, false); valid(i); return; }
+        }
+        orderForm.hidden = true;
+        var thanks = document.getElementById('order-thanks');
+        thanks.hidden = false;
+        thanks.setAttribute('tabindex', '-1');
+        thanks.focus();
+      });
+      show(0, false);
+    })();
   </script>
 </body>
 </html>

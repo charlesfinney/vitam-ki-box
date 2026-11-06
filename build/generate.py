@@ -66,6 +66,7 @@ def main():
                                  'current': c == code, 'href': root + f + target})
             html = page_tpl.render(
                 lang=code, name=name, t=t, root=root, switcher=switcher, alternates=alternates,
+                base_url=BASE_URL, page_url=BASE_URL + out + ('' if name == 'index.html' else name),
                 title=meta['title'], description=meta.get('description'),
                 home='' if name == 'index.html' else 'index.html',
                 divider=name != 'index.html', main=main_html)
