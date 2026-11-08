@@ -115,6 +115,74 @@
       });
       show(0, false);
     })();
+    // Tooltips: Escape closes the open one without moving focus or the pointer (WCAG 1.4.13).
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      [].forEach.call(document.querySelectorAll('.egg:hover, .egg:focus, .egg:focus-within'), function (egg) { egg.classList.add('egg-dismissed'); });
+    });
+    [].forEach.call(document.querySelectorAll('.egg'), function (egg) {
+      function reset() { egg.classList.remove('egg-dismissed'); }
+      egg.addEventListener('mouseleave', reset);
+      egg.addEventListener('focusout', reset);
+    });
+    // Demo "Vita answers" (illustration): question, short pause, answer word by word at the target pace,
+    // about one standard page (1,800 characters) in 10 seconds. Starts once when scrolled into view.
+    // Without JavaScript, or with reduced motion, the full answer simply stands there.
+    var demo = document.querySelector('[data-demo]');
+    if (demo && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) (function () {
+      var CHARS_PER_SECOND = 180;
+      var q = demo.querySelector('[data-demo-q]'), a = demo.querySelector('[data-demo-a]');
+      var dots = demo.querySelector('[data-demo-dots]'), replay = demo.querySelector('[data-demo-replay]');
+      // wrap each word of the answer in a span; spaces stay plain text
+      (function wrap(node) {
+        [].slice.call(node.childNodes).forEach(function (n) {
+          if (n.nodeType === 1) return wrap(n);
+          if (n.nodeType !== 3 || !n.textContent.trim()) return;
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement('span'); w.className = 'demo-w'; w.textContent = part; frag.appendChild(w);
+          });
+          node.replaceChild(frag, n);
+        });
+      })(a);
+      var words = [].slice.call(a.querySelectorAll('.demo-w'));
+      var items = [].slice.call(a.querySelectorAll('li'));
+      var timers = [], frame = 0;
+      function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+      function reset() {
+        timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(frame);
+        q.classList.remove('on'); words.concat(items).forEach(function (w) { w.classList.remove('on'); });
+        dots.hidden = true; replay.style.visibility = 'hidden';
+      }
+      function play() {
+        reset();
+        later(function () { q.classList.add('on'); }, 200);
+        later(function () { dots.hidden = false; }, 700);
+        later(function () {
+          dots.hidden = true;
+          var start = performance.now(), shown = 0, chars = 0;
+          var at = words.map(function (w) { chars += w.textContent.length + 1; return chars; });
+          (function step(now) {
+            var budget = (now - start) / 1000 * CHARS_PER_SECOND;
+            while (shown < words.length && at[shown] <= budget) {
+              var w = words[shown++], li = w.closest('li');
+              w.classList.add('on'); if (li) li.classList.add('on'); // list number appears with its first word
+            }
+            if (shown < words.length) frame = requestAnimationFrame(step);
+            else replay.style.visibility = 'visible';
+          })(start);
+        }, 1500);
+      }
+      demo.classList.add('demo-armed');
+      replay.hidden = false; replay.style.visibility = 'hidden'; // keeps its space, so the card never changes height
+      replay.addEventListener('click', play);
+      var seen = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { seen.disconnect(); play(); }
+      }, { threshold: 0.5 });
+      seen.observe(demo);
+    })();
   </script>
 </body>
 </html>

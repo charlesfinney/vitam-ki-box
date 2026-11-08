@@ -390,11 +390,29 @@
           </li>
         </ol>
         <p class="mt-10 text-[1.3rem] md:text-[1.6rem] font-light">Asking for help is an IQ test. If you call, you passed: <a href="tel:+13322493276" class="roll whitespace-nowrap">+1 (332) 249-3276</a></p>
-        <!-- Placeholder: demo video (self-hosted), replace before launch -->
-        <figure class="ph aspect-video mt-10 max-w-3xl bg-paper" role="img" aria-label="Placeholder for the demo video">
-          <svg viewBox="0 0 48 48" class="w-12 h-12" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M20 16l13 8-13 8z" fill="currentColor" /></svg>
-          <span>Placeholder · Demo video: open, ask, answer</span>
+        <!-- Demo: Vita answers a question. Illustration, pace from the target values (one standard page in about 10 s). Without JavaScript or with reduced motion the full answer simply stands there. -->
+        <figure class="demo card mt-10 max-w-3xl overflow-hidden" data-demo aria-label="Illustration: Vita sums up a lease">
+          <div class="flex items-center justify-between gap-4 px-5 md:px-8 py-3 border-b border-line text-[13px] text-muted">
+            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#5aa31c]" aria-hidden="true"></span>Vita · offline</span>
+            <button type="button" class="roll" data-demo-replay hidden>Watch again</button>
+          </div>
+          <div class="grid gap-5 px-5 md:px-8 py-6 md:py-8 text-[15px] md:text-[16px] leading-relaxed">
+            <p class="demo-q justify-self-end max-w-[85%] rounded-ui bg-slate text-paper px-4 py-3" data-demo-q>Sum up the lease in five points.</p>
+            <div class="relative max-w-[95%]" data-demo-a>
+              <span class="demo-dots" data-demo-dots aria-hidden="true" hidden><i></i><i></i><i></i></span>
+              <p>Sure. The key points:</p>
+              <ol class="list-decimal pl-5 my-3 space-y-1">
+                <li>Open-ended, starting March&nbsp;1.</li>
+                <li>Three months’ notice to end it.</li>
+                <li>Graduated rent: up 2% a year.</li>
+                <li>You pay for minor repairs up to €100.</li>
+                <li>Pets only with written consent.</li>
+              </ol>
+              <p>Worth a look: section&nbsp;14 rules out subletting entirely.</p>
+            </div>
+          </div>
         </figure>
+        <p class="text-[13px] text-muted mt-3 max-w-3xl">Illustration with sample text. The pace matches our target values; we’ll publish measured figures with the first series.</p>
       </div>
     </section>
 
@@ -876,6 +894,74 @@
         thanks.focus();
       });
       show(0, false);
+    })();
+    // Tooltips: Escape closes the open one without moving focus or the pointer (WCAG 1.4.13).
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      [].forEach.call(document.querySelectorAll('.egg:hover, .egg:focus, .egg:focus-within'), function (egg) { egg.classList.add('egg-dismissed'); });
+    });
+    [].forEach.call(document.querySelectorAll('.egg'), function (egg) {
+      function reset() { egg.classList.remove('egg-dismissed'); }
+      egg.addEventListener('mouseleave', reset);
+      egg.addEventListener('focusout', reset);
+    });
+    // Demo "Vita answers" (illustration): question, short pause, answer word by word at the target pace,
+    // about one standard page (1,800 characters) in 10 seconds. Starts once when scrolled into view.
+    // Without JavaScript, or with reduced motion, the full answer simply stands there.
+    var demo = document.querySelector('[data-demo]');
+    if (demo && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) (function () {
+      var CHARS_PER_SECOND = 180;
+      var q = demo.querySelector('[data-demo-q]'), a = demo.querySelector('[data-demo-a]');
+      var dots = demo.querySelector('[data-demo-dots]'), replay = demo.querySelector('[data-demo-replay]');
+      // wrap each word of the answer in a span; spaces stay plain text
+      (function wrap(node) {
+        [].slice.call(node.childNodes).forEach(function (n) {
+          if (n.nodeType === 1) return wrap(n);
+          if (n.nodeType !== 3 || !n.textContent.trim()) return;
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement('span'); w.className = 'demo-w'; w.textContent = part; frag.appendChild(w);
+          });
+          node.replaceChild(frag, n);
+        });
+      })(a);
+      var words = [].slice.call(a.querySelectorAll('.demo-w'));
+      var items = [].slice.call(a.querySelectorAll('li'));
+      var timers = [], frame = 0;
+      function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+      function reset() {
+        timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(frame);
+        q.classList.remove('on'); words.concat(items).forEach(function (w) { w.classList.remove('on'); });
+        dots.hidden = true; replay.style.visibility = 'hidden';
+      }
+      function play() {
+        reset();
+        later(function () { q.classList.add('on'); }, 200);
+        later(function () { dots.hidden = false; }, 700);
+        later(function () {
+          dots.hidden = true;
+          var start = performance.now(), shown = 0, chars = 0;
+          var at = words.map(function (w) { chars += w.textContent.length + 1; return chars; });
+          (function step(now) {
+            var budget = (now - start) / 1000 * CHARS_PER_SECOND;
+            while (shown < words.length && at[shown] <= budget) {
+              var w = words[shown++], li = w.closest('li');
+              w.classList.add('on'); if (li) li.classList.add('on'); // list number appears with its first word
+            }
+            if (shown < words.length) frame = requestAnimationFrame(step);
+            else replay.style.visibility = 'visible';
+          })(start);
+        }, 1500);
+      }
+      demo.classList.add('demo-armed');
+      replay.hidden = false; replay.style.visibility = 'hidden'; // keeps its space, so the card never changes height
+      replay.addEventListener('click', play);
+      var seen = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { seen.disconnect(); play(); }
+      }, { threshold: 0.5 });
+      seen.observe(demo);
     })();
   </script>
 </body>
