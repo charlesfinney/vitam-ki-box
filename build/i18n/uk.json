@@ -5,14 +5,64 @@
   "call": "Подзвонити",
   "menu": "Головне меню",
   "menu_mobile": "Головне меню, мобільна версія",
-  "nav": [],
-  "cta": null,
+  "nav": [
+    {
+      "href": "#box",
+      "label": "Vita"
+    },
+    {
+      "href": "#artikel",
+      "label": "Статті"
+    },
+    {
+      "href": "#story",
+      "label": "Наша історія"
+    },
+    {
+      "href": "#faq",
+      "label": "Питання"
+    }
+  ],
+  "cta": {
+    "href": "#kaufen",
+    "label": "Купити"
+  },
   "phone": "Телефон",
   "email": "Пошта",
   "provider": "Компанія",
   "provider_name": "Vitam Box GbR, Charles Finney і Mathias Maurer",
-  "footer_buttons": [],
-  "footer_links": [],
+  "footer_buttons": [
+    {
+      "href": "#kaufen",
+      "label": "Купити зараз"
+    },
+    {
+      "href": "#faq",
+      "label": "Питання"
+    },
+    {
+      "href": "#story",
+      "label": "Наша історія"
+    }
+  ],
+  "footer_links": [
+    {
+      "href": "#box",
+      "label": "Vita"
+    },
+    {
+      "href": "#modelle",
+      "label": "Відкриті моделі"
+    },
+    {
+      "href": "#artikel",
+      "label": "Статті"
+    },
+    {
+      "href": "#preis",
+      "label": "Ціна"
+    }
+  ],
   "legal": [
     {
       "href": "impressum.html",
@@ -30,7 +80,7 @@
   "social_soon": "Профіль незабаром",
   "top": "Нагору",
   "og": {
-    "headline": "Ваш власний ШІ.<br>У валізі.",
+    "headline": "Власний ШІ.<br>У валізі.",
     "sub": "Платите один раз, і він ваш назавжди.<br>Ваші дані не залишають валізу.",
     "chip": "Без підписки. Без хмари.",
     "alt": "Vita Concierge: ваш власний ШІ у валізі. Платите один раз, і він ваш назавжди.",
