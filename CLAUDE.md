@@ -15,3 +15,4 @@ Draft website for Vita Concierge, a private, air-gapped AI in a rugged case sold
 8. Share cards: `python3 build/make_og.py` renders `assets/img/og-<lang>.png` from `build/og/card.html` and the `og` text in `build/i18n/<lang>.json`.
 9. Working style with Charles: most important first, short paragraphs, numbered steps, no compliments. Documents carry the byline "date · Charles Finney +1 (332) 249-3276".
 10. Decisions, business model and handoff live in the claude.ai Project "Vita Concierge" (`landing-page/HANDOFF.md`, `landing-page/decisions-and-prelaunch.md`, `business/business-model.md`). If Charles pastes from them, they win over this file.
+11. Judge every visual change against `DESIGN.md` (what premium means for our buyers, what is not us, and the checks before anything ships).
