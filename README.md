@@ -8,7 +8,7 @@ Live: https://charlesfinney.github.io/vitam-ki-box/ (German), `/en/` (English) a
 
 ## What's here
 1. Built pages, served by GitHub Pages: German at the root (`index.html`, Impressum, Datenschutz, three article stubs `artikel-*.html`), English in `en/`, Ukrainian in `uk/`. Do not edit these by hand: the next build overwrites them.
-2. `assets/`: compiled CSS, self-hosted Inter font (SIL OFL), images.
+2. `assets/`: compiled CSS, self-hosted fonts (Unbounded for headings, Inter for text; both SIL OFL, Latin and Cyrillic), images.
 3. `build/`: the sources and the build.
    - `content/<lang>/*.html`: each page's text, written natively per language, with a short header (`title`, `description`).
    - `i18n/<lang>.json`: top bar, header and footer text per language.
