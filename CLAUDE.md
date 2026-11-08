@@ -10,7 +10,7 @@ Draft website for Vita Concierge, a private, air-gapped AI in a rugged case sold
 3. Check every change with Playwright at 1280 and 390 px: `document.documentElement.scrollWidth` must equal the viewport width; no request may leave the site.
 4. German is written natively for German readers; English and Ukrainian are written natively too, never translated literally. Ukrainian copy needs a native speaker's review.
 5. Don't invent facts, figures, quotes or social proof. Cite sources.
-6. Keep the look: black top bar, white header, white and lavender (#e6e6f0) sections, slate (#424257) bands, colourful line icons (#d4800f, #5aa31c, #2b9bd9, #4a69c9, #c9425a), Inter self-hosted. No third-party requests.
+6. Keep the look: black top bar, white header, white and lavender (#e6e6f0) sections, slate (#424257) bands, colourful line icons (#d4800f, #5aa31c, #2b9bd9, #4a69c9, #c9425a). Type: Unbounded (light) for headings, big numbers and the wordmark, Inter for all other text, both self-hosted with Cyrillic (decided by Charles, Nov 8, 2026). Unbounded is wide: check long German and Ukrainian words in headings at 390 px. No third-party requests.
 7. Product name "Vita Concierge"; company stays "Vitam Box GbR"; e-mail stays hello@vitambox.de. Don't name the prototype case maker.
 8. Share cards: `python3 build/make_og.py` renders `assets/img/og-<lang>.png` from `build/og/card.html` and the `og` text in `build/i18n/<lang>.json`.
 9. Working style with Charles: most important first, short paragraphs, numbered steps, no compliments. Documents carry the byline "date · Charles Finney +1 (332) 249-3276".
