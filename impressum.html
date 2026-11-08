@@ -37,9 +37,9 @@
           <svg viewBox="0 0 3 2" class="w-[18px] h-3 rounded-[2px]" aria-hidden="true"><rect width="3" height="1" fill="#0057B7" /><rect y="1" width="3" height="1" fill="#FFD700" /></svg>UA
         </a>
       </div>
-      <a href="tel:+491788080616" class="flex items-center gap-2 rounded-ui bg-paper text-ink px-3.5 py-1.5 hover:bg-line transition-colors">
+      <a href="tel:+13322493276" class="flex items-center gap-2 rounded-ui bg-paper text-ink px-3.5 py-1.5 hover:bg-line transition-colors">
         <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.5l1.8 4.6-2.3 1.4a11.5 11.5 0 0 0 5.5 5.5l1.4-2.3 4.6 1.8V18a2 2 0 0 1-2 2A16.5 16.5 0 0 1 3 5.5a2 2 0 0 1 2-2z" /></svg>
-        <span class="hidden sm:inline">+49 178 8080616</span><span class="sm:hidden">Anrufen</span>
+        <span class="hidden sm:inline">+1 (332) 249-3276</span><span class="sm:hidden">Anrufen</span>
       </a>
     </div>
   </div>
@@ -170,7 +170,7 @@
       function summary() {
         var ram = orderForm.querySelector('input[name="ram"]:checked');
         var text = {
-          ram: ram ? ram.parentNode.innerText.replace(/\s+/g, ' ').trim().replace(/ (\d)/, ' · $1') : '',
+          ram: ram ? [].map.call(ram.nextElementSibling.children, function (el) { return el.textContent.trim(); }).join(' · ') : '',
           use: orderForm.elements.use.value.trim() || '—',
           plz: orderForm.elements.plz.value.trim(),
           name: orderForm.elements.name.value.trim(),

@@ -70,7 +70,7 @@
       function summary() {
         var ram = orderForm.querySelector('input[name="ram"]:checked');
         var text = {
-          ram: ram ? ram.parentNode.innerText.replace(/\s+/g, ' ').trim().replace(/ (\d)/, ' · $1') : '',
+          ram: ram ? [].map.call(ram.nextElementSibling.children, function (el) { return el.textContent.trim(); }).join(' · ') : '',
           use: orderForm.elements.use.value.trim() || '—',
           plz: orderForm.elements.plz.value.trim(),
           name: orderForm.elements.name.value.trim(),

@@ -5,14 +5,64 @@
   "call": "Call",
   "menu": "Main menu",
   "menu_mobile": "Main menu, mobile",
-  "nav": [],
-  "cta": null,
+  "nav": [
+    {
+      "href": "#box",
+      "label": "Vita"
+    },
+    {
+      "href": "#artikel",
+      "label": "Articles"
+    },
+    {
+      "href": "#story",
+      "label": "Our story"
+    },
+    {
+      "href": "#faq",
+      "label": "FAQ"
+    }
+  ],
+  "cta": {
+    "href": "#kaufen",
+    "label": "Buy"
+  },
   "phone": "Phone",
   "email": "Email",
   "provider": "Company",
   "provider_name": "Vitam Box GbR, Charles Finney and Mathias Maurer",
-  "footer_buttons": [],
-  "footer_links": [],
+  "footer_buttons": [
+    {
+      "href": "#kaufen",
+      "label": "Buy now"
+    },
+    {
+      "href": "#faq",
+      "label": "FAQ"
+    },
+    {
+      "href": "#story",
+      "label": "Our story"
+    }
+  ],
+  "footer_links": [
+    {
+      "href": "#box",
+      "label": "Vita"
+    },
+    {
+      "href": "#modelle",
+      "label": "Open models"
+    },
+    {
+      "href": "#artikel",
+      "label": "Articles"
+    },
+    {
+      "href": "#preis",
+      "label": "Price"
+    }
+  ],
   "legal": [
     {
       "href": "impressum.html",
@@ -31,9 +81,9 @@
   "top": "Back to top",
   "og": {
     "headline": "Your own AI.<br>In a case.",
-    "sub": "Pay once and it's yours for good.<br>Nothing you tell it leaves the case.",
+    "sub": "Pay once, own it for good.<br>Your data stays in the room.",
     "chip": "No subscription. No cloud.",
-    "alt": "Vita Concierge: your own AI in a case. Pay once and it's yours for good.",
-    "locale": "en_GB"
+    "alt": "Vita Concierge: your own AI in a case. Pay once, own it for good.",
+    "locale": "en_US"
   }
 }
