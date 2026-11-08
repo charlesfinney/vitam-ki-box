@@ -8,7 +8,7 @@ module.exports = {
         ink: '#000000',
         paper: '#ffffff',
         line: '#e6e6f0',
-        muted: '#74748a',
+        muted: '#606075', // was #74748a; darker so grey text passes WCAG AA on lavender (4.9:1) and white (6.1:1)
         slate: '#424257',
         focus: '#4d65cb',
       },

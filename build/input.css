@@ -19,7 +19,14 @@
 @layer base {
   /* Headings in Unbounded. It is wide: a word too long for the line breaks rather than running off the screen (safety only; sizes are set so this doesn't happen) */
   h1, h2, h3 { font-family: theme('fontFamily.display'); overflow-wrap: break-word; }
-  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  /* Browser surfaces in our colours: selection, focus ring, caret, form accents, link underlines */
+  ::selection { background: rgba(74, 105, 201, .25); }
+  :focus-visible { outline: 2px solid theme('colors.focus'); outline-offset: 3px; }
+  .bg-slate :focus-visible, .bg-ink :focus-visible, .bg-muted :focus-visible { outline-color: theme('colors.paper'); }
+  input, textarea { caret-color: theme('colors.focus'); }
+  :root { accent-color: theme('colors.slate'); }
+  a { text-underline-offset: .2em; text-decoration-thickness: 1px; }
   body { @apply bg-paper text-ink font-light; overflow-x: clip; }
   :focus-visible { outline: 2px solid theme('colors.focus'); outline-offset: 3px; }
   [hidden] { display: none !important; }
@@ -43,7 +50,8 @@
     transition: background-size .35s ease;
   }
   .roll:hover, .roll:focus-visible { background-position: left bottom; background-size: 100% 1px; }
-  .roll-arrow::after { content: '→'; margin-left: .4em; }
+  /* drawn arrow (a mask in the text colour), not a typed glyph */
+  .roll-arrow::after { content: ''; display: inline-block; width: .85em; height: .85em; margin-left: .4em; vertical-align: -.1em; background-color: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 8h10M8.5 4l4 4-4 4'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 8h10M8.5 4l4 4-4 4'/%3E%3C/svg%3E") center / contain no-repeat; }
 
   /* Easter eggs: a dotted word that explains the behavioural idea behind it */
   .egg {
