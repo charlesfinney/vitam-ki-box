@@ -1,4 +1,4 @@
-# Vita Concierge: what premium means for our buyers
+# Vita AI Concierge: what premium means for our buyers
 
 Nov 8, 2026 · Charles Finney +1 (332) 249-3276
 
@@ -31,5 +31,5 @@ The service book: a paper record, stamped and signed by a person at every visit.
 ## Before anything ships
 1. Would a careful law firm put this on its desk?
 2. In five seconds, does a new visitor know what it is, who it is for, and why to trust it?
-3. Name one decision in the change that only Vita Concierge would make.
+3. Name one decision in the change that only Vita AI Concierge would make.
 4. Checks pass: contrast (WCAG AA), 390 and 1280 px without overflow, no request leaving the site.
