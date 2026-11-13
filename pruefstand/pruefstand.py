@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vitam Box GbR
 """Vita Prüfstand: measure a local language model on professional tasks, decide whether an
 update may be installed, and write the service-book entry that the concierge and the client sign.
 

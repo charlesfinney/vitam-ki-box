@@ -78,4 +78,7 @@ A client's own test set uses the same format and never leaves the case.
 1. Review of every task by a practising lawyer, doctor and tax adviser; v0.2 with 50 tasks, including tasks that need legal knowledge, not only reading.
 2. First measured results on Vita's hardware: several open models and compressions, published with the method, including what does badly.
 3. A guided session for setting up a client's own 20 tasks at installation.
-4. Licence for publishing the code and tasks: to be decided (suggestion: Apache 2.0 for the code, CC BY 4.0 for the tasks).
+
+## Licence
+
+Code (`pruefstand.py`, `tests/`): Apache License 2.0, see `LICENSE`. Tasks (`tasks/*.toml`): Creative Commons Attribution 4.0 International (CC BY 4.0), see `tasks/LICENSE`. © 2026 Vitam Box GbR. Decided by Charles, Nov 13, 2026.

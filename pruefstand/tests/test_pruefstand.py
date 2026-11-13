@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vitam Box GbR
 """Tests for the Vita Prüfstand. Run: python3 pruefstand.py selftest  (or python3 -m unittest discover -s tests)."""
 import json, os, sys, tempfile, threading, time, unittest
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
 id = "steuer-04-rechnung"
 profession = "steuer"
 kind = "rechnen"

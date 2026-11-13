@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
 id = "kanzlei-02-zahlungsfrist"
 profession = "kanzlei"
 kind = "frist"
