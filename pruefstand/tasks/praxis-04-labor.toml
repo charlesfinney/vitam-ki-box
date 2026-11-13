@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
+id = "praxis-04-labor"
+profession = "praxis"
+kind = "extraktion"
+title = "Laborbefund: auffällige Werte"
+instruction = """Welche Werte liegen außerhalb des Referenzbereichs? Nenne Wert, Einheit und ob zu hoch oder zu niedrig. Werte im Normbereich nicht aufzählen."""
+document = """Labor Dr. Seidel & Kollegen · Befund vom 05.05.2027
+Patient: Herr Klaus Petersen, geb. 21.08.1960
+Natrium 139 mmol/l (135–145)
+Kalium 5,9 mmol/l (3,5–5,1) H
+Kreatinin 1,1 mg/dl (0,7–1,2)
+eGFR 68 ml/min/1,73 m² (> 60)
+HbA1c 8,1 % (4,0–6,0) H
+LDL-Cholesterin 96 mg/dl (< 116)
+TSH 2,1 mU/l (0,4–4,0)"""
+reference = """Außerhalb des Referenzbereichs:
+Kalium 5,9 mmol/l, erhöht (Referenz 3,5–5,1).
+HbA1c 8,1 %, erhöht (Referenz 4,0–6,0).
+Alle übrigen Werte liegen im Normbereich."""
+counterexample = """Kalium 5,9 mmol/l erhöht, Kreatinin 1,1 mg/dl erhöht, HbA1c 8,1 % erhöht."""
+
+[[checks]]
+name = "Kalium 5,9"
+type = "contains"
+any = ['Kalium.{0,30}5,9']
+critical = true
+
+[[checks]]
+name = "Kalium erhöht"
+type = "contains"
+any = ['Kalium(?:(?!Natrium|Kalium|Kreatinin|eGFR|HbA1c|LDL|TSH|\.\s|;).){0,60}(erhöht|zu hoch|hoch|über)']
+
+[[checks]]
+name = "HbA1c 8,1"
+type = "contains"
+any = ['HbA1c.{0,30}8,1']
+critical = true
+
+[[checks]]
+name = "HbA1c erhöht"
+type = "contains"
+any = ['HbA1c(?:(?!Natrium|Kalium|Kreatinin|eGFR|HbA1c|LDL|TSH|\.\s|;).){0,60}(erhöht|zu hoch|hoch|über)']
+
+[[checks]]
+name = "nennt keine normalen Werte als auffällig"
+type = "absent"
+any = ['Natrium(?:(?!Natrium|Kalium|Kreatinin|eGFR|HbA1c|LDL|TSH|\.\s|;).){0,40}(erhöht|zu hoch|erniedrigt|zu niedrig)', 'Kreatinin(?:(?!Natrium|Kalium|Kreatinin|eGFR|HbA1c|LDL|TSH|\.\s|;).){0,40}(erhöht|zu hoch)', 'TSH(?:(?!Natrium|Kalium|Kreatinin|eGFR|HbA1c|LDL|TSH|\.\s|;).){0,40}(erhöht|zu hoch|erniedrigt)', 'LDL(?:(?!Natrium|Kalium|Kreatinin|eGFR|HbA1c|LDL|TSH|\.\s|;).){0,40}(erhöht|zu hoch)', 'eGFR(?:(?!Natrium|Kalium|Kreatinin|eGFR|HbA1c|LDL|TSH|\.\s|;).){0,40}(erniedrigt|zu niedrig)']
+critical = true

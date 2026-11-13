@@ -1,0 +1,100 @@
+---
+title: How we measure — Vita AI Concierge
+description: Every update is tested on your own tasks and installed only if it does no worse. Plus an open test for law firms, medical practices and tax advisers.
+---
+<main>
+    <!-- Intro -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-24">
+        <h1 class="text-[2.6rem] md:text-[4rem] font-light leading-[1.15] tracking-tight mb-6">How we measure.</h1>
+        <p class="text-[17px] md:text-[19px] font-light leading-relaxed text-ink/80 max-w-xl">An AI you can’t check is an AI you have to take on faith. Vita you should be able to check: every update on your own tasks, every figure with its method in the open.</p>
+      </div>
+    </section>
+
+    <!-- Test bench -->
+    <section class="sec-alt">
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20 grid md:grid-cols-[1.2fr_1fr] gap-12 items-start">
+        <div>
+          <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4">A test bench in your case.</h2>
+          <p class="text-[16px] text-muted mb-10 max-w-xl">At setup, we put together about 20 tasks from your own work with you: a brief to summarize, a deadline, a lab report. They stay in the case, like everything else.</p>
+          <ol class="grid gap-4">
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">1</p>
+              <p class="text-[1.1rem] font-normal mb-2">Before every update</p>
+              <p class="text-[15px] text-muted">The new version answers each of your tasks 25 times, and so does the current one. We check that facts, deadlines and amounts are right and nothing is made up.</p>
+            </li>
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">2</p>
+              <p class="text-[1.1rem] font-normal mb-2">Only if it does no worse</p>
+              <p class="text-[15px] text-muted">An update goes in only if it does no worse on average and slips on no critical check, such as a deadline or an emergency warning. Otherwise your current AI stays.</p>
+            </li>
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">3</p>
+              <p class="text-[1.1rem] font-normal mb-2">In black and white</p>
+              <p class="text-[15px] text-muted">The result goes into your service book, signed. So you can see your AI getting better, and never quietly getting worse.</p>
+            </li>
+          </ol>
+        </div>
+        <figure class="md:sticky md:top-8">
+          <img src="../assets/img/serviceheft-muster.png" width="1120" height="1610" alt="Sample service book entry (German): update test with results before and after, decision, stamp and signatures" class="w-full h-auto rounded-ui shadow-[0_20px_50px_rgba(66,66,87,.18)]" />
+          <figcaption class="text-[13px] text-muted mt-3">Sample with example values, in German like the service book itself. This is the entry we print and sign at your office.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Open benchmark -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4 max-w-3xl">The open Vita test.</h2>
+        <p class="text-[16px] text-muted mb-10 max-w-xl">How good are open models at German legal, medical and tax work? So far there is no open test for that. We’re building one and publishing everything: tasks, checks, code and results.</p>
+        <ul class="border-t border-line">
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">15 tasks</p>
+            <p class="text-[15px] text-muted">Version 0.1: five each from law firms, medical practices and tax advisers. Written on invented documents, never on real files.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">86 checks</p>
+            <p class="text-[15px] text-muted">Deadlines, amounts, diagnoses, and what must not be made up.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">25 answers per task</p>
+            <p class="text-[15px] text-muted">5 runs × 5 answers. Answers vary, so we report the average with its margin of error.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">Speed from the text</p>
+            <p class="text-[15px] text-muted">Time to the first word, words per second, reading speed.</p>
+          </li>
+        </ul>
+        <p class="text-[15px] text-muted mt-8 max-w-xl">Every task has a correct model answer and a typical wrong one. An automatic test makes sure the checks accept the right one and catch the wrong one.</p>
+        <p class="text-[15px] text-muted mt-4 max-w-xl">Before we publish results, practitioners from each field review the tasks. First results follow with the first series, measured on Vita’s own hardware.</p>
+        <p class="text-[15px] mt-6"><a href="https://github.com/charlesfinney/vitam-ki-box/tree/main/pruefstand" class="roll roll-arrow">See the tasks and code (German tasks)</a></p>
+        <p class="text-[13px] text-muted mt-2">Code under Apache 2.0, tasks under CC BY 4.0: free to use with attribution.</p>
+      </div>
+    </section>
+
+    <!-- Three settings -->
+    <section class="bg-slate text-paper">
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4 max-w-3xl">Three settings, chosen by measurement.</h2>
+        <p class="text-[16px] text-paper/80 mb-10 max-w-xl">You only choose how you want to work. Which model sits behind each setting is decided on the test bench.</p>
+        <ul class="grid md:grid-cols-3 gap-4">
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Fast</p><p class="text-[15px] text-paper/80">The fastest model within 10 points of the best. For dictation and quick questions.</p></li>
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Balanced</p><p class="text-[15px] text-paper/80">Quality counts twice as much as speed. For everyday work.</p></li>
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Thorough</p><p class="text-[15px] text-paper/80">The model with the best results, even if it takes longer. For deadlines, lab reports and tax notices.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- What we do not do -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-8">What we don’t do.</h2>
+        <ul class="border-t border-line max-w-3xl">
+          <li class="py-5 border-b border-line text-[16px]">None of your tasks leaves the case, not even for testing.</li>
+          <li class="py-5 border-b border-line text-[16px]">No figure without a measurement: until the first series, we state targets, not results.</li>
+          <li class="py-5 border-b border-line text-[16px]">No polished tables: we publish what does badly, too.</li>
+        </ul>
+        <p class="text-[15px] mt-8"><a href="index.html#kaufen" class="btn btn-dark">Order Vita</a></p>
+      </div>
+    </section>
+  </main>

@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
+id = "praxis-05-patienteninfo"
+profession = "praxis"
+kind = "schreiben"
+title = "Merkzettel für die Patientin"
+instruction = """Schreibe Frau Brandt einen kurzen Merkzettel in einfacher Sprache (höchstens 120 Wörter)."""
+document = """Neue Medikation für Frau Gisela Brandt ab 17.04.2027:
+Apixaban 5 mg morgens und abends (Blutverdünner, nicht auslassen).
+ASS 100 mg nicht mehr einnehmen.
+Metoprolol jetzt 47,5 mg morgens.
+Kontrolltermin beim Hausarzt: 14.05.2027, 9:00 Uhr.
+Bei Blut im Urin oder Stuhl, schwarzem Stuhl oder starkem Nasenbluten sofort melden."""
+reference = """Ihr Merkzettel, Frau Brandt
+Apixaban 5 mg: jeden Tag morgens und abends eine Tablette. Das ist ein Blutverdünner. Bitte nie auslassen.
+ASS 100 mg: nicht mehr einnehmen.
+Metoprolol: jetzt 47,5 mg, morgens.
+Ihr nächster Termin beim Hausarzt: 14.05.2027 um 9:00 Uhr.
+Melden Sie sich sofort, wenn Sie Blut im Urin oder Stuhl sehen, Ihr Stuhl schwarz ist oder Sie starkes Nasenbluten haben."""
+counterexample = """Nehmen Sie ASS weiter wie bisher und Apixaban morgens. Ihr Termin ist am 14.04.2027."""
+
+[[checks]]
+name = "Apixaban morgens und abends"
+type = "contains"
+any = ['Apixaban.{0,80}(morgens und abends|morgens.{0,20}abends|zweimal)']
+critical = true
+
+[[checks]]
+name = "ASS nicht mehr"
+type = "contains"
+any = ['\bASS\b.{0,40}(nicht mehr|absetzen|abgesetzt|weglassen|nicht einnehmen)']
+critical = true
+
+[[checks]]
+name = "Termin 14.05.2027"
+type = "date"
+value = "2027-05-14"
+critical = true
+
+[[checks]]
+name = "Uhrzeit 9:00"
+type = "contains"
+any = ['\b9[.:]00', '\b9 Uhr']
+
+[[checks]]
+name = "Warnzeichen Blutung"
+type = "contains"
+any = ['Blut', 'Nasenbluten', 'schwarz']
+
+[[checks]]
+name = "höchstens 120 Wörter"
+type = "max_words"
+value = 120
+
+[[checks]]
+name = "ASS nicht weiter"
+type = "absent"
+any = ['\bASS\b.{0,30}weiter']
+critical = true

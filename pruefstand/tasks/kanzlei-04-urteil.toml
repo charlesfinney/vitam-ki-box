@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
+id = "kanzlei-04-urteil"
+profession = "kanzlei"
+kind = "extraktion"
+title = "Urteil: Eckdaten und Ergebnis"
+instruction = """Lies die Eckdaten des Urteils heraus: Gericht, Aktenzeichen, Datum, wer gewonnen hat, wer die Kosten trägt, Streitwert. Eine Zeile je Punkt."""
+document = """Landgericht Potsdam
+Az. 4 O 118/26 · Verkündet am 18. März 2027
+Im Namen des Volkes · Urteil
+In dem Rechtsstreit Müller Haustechnik GmbH (Klägerin) gegen Herrn Frank Ostermann (Beklagter)
+hat die 4. Zivilkammer des Landgerichts Potsdam für Recht erkannt:
+1. Die Klage wird abgewiesen.
+2. Die Klägerin trägt die Kosten des Rechtsstreits.
+3. Das Urteil ist gegen Sicherheitsleistung in Höhe von 110 % des jeweils zu vollstreckenden Betrages vorläufig vollstreckbar.
+Der Streitwert wird auf 18.750,00 € festgesetzt.
+Tatbestand: Die Klägerin verlangt Werklohn für den Einbau einer Heizungsanlage. Der Beklagte hat die Abnahme wegen Mängeln verweigert."""
+reference = """Gericht: Landgericht Potsdam, 4. Zivilkammer
+Aktenzeichen: 4 O 118/26
+Datum: 18.03.2027
+Ergebnis: Die Klage wurde abgewiesen, der Beklagte Herr Ostermann hat gewonnen.
+Kosten: Die Klägerin trägt die Kosten des Rechtsstreits.
+Streitwert: 18.750,00 €"""
+counterexample = """Landgericht Potsdam, 4 O 118/26, 18.03.2027. Die Klägerin hat gewonnen, der Beklagte trägt die Kosten. Streitwert 18.750 €."""
+
+[[checks]]
+name = "Gericht"
+type = "contains"
+any = ['Landgericht Potsdam', 'LG Potsdam']
+critical = true
+
+[[checks]]
+name = "Aktenzeichen 4 O 118/26"
+type = "contains"
+any = ['4 O 118/26']
+critical = true
+
+[[checks]]
+name = "Datum 18.03.2027"
+type = "date"
+value = "2027-03-18"
+critical = true
+
+[[checks]]
+name = "Ergebnis: Klage abgewiesen"
+type = "contains"
+any = ['abgewiesen']
+critical = true
+
+[[checks]]
+name = "Kosten trägt die Klägerin"
+type = "contains"
+any = ['Klägerin trägt', 'Kosten\W.{0,40}Klägerin', 'Müller Haustechnik.{0,40}Kosten']
+critical = true
+
+[[checks]]
+name = "Streitwert 18.750 €"
+type = "number"
+value = 18750
+
+[[checks]]
+name = "kein vertauschtes Ergebnis"
+type = "absent"
+any = ['Klägerin (hat )?gewonnen', 'Klage (wird |wurde )?stattgegeben', 'Beklagte\w* trägt die Kosten']
+critical = true

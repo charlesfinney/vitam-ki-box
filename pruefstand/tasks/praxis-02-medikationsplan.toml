@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
+id = "praxis-02-medikationsplan"
+profession = "praxis"
+kind = "extraktion"
+title = "Medikationsplan aus Facharztbrief"
+instruction = """Erstelle daraus einen Medikationsplan mit Wirkstoff, Stärke, morgens, mittags, abends, zur Nacht und Hinweis. Abgesetzte Mittel gehören nicht in den Plan, sondern in einen Hinweis darunter."""
+document = """Diabetologische Schwerpunktpraxis Dr. Okafor · an Hausarztpraxis Dr. Winter
+Betrifft: Herrn Klaus Petersen, geb. 21.08.1960
+Bitte stellen Sie die Medikation wie folgt um: Metformin 1000 mg morgens und abends; Empagliflozin 10 mg morgens; Atorvastatin 20 mg abends; Pantoprazol 20 mg nur bei Bedarf, höchstens einmal täglich.
+Glimepirid bitte absetzen (Hypoglykämien).
+Nächste Vorstellung in drei Monaten mit HbA1c."""
+reference = """Medikationsplan Herr Klaus Petersen
+Metformin 1000 mg: morgens 1, mittags 0, abends 1, zur Nacht 0
+Empagliflozin 10 mg: morgens 1, mittags 0, abends 0, zur Nacht 0
+Atorvastatin 20 mg: morgens 0, mittags 0, abends 1, zur Nacht 0
+Pantoprazol 20 mg: bei Bedarf, höchstens einmal täglich
+Hinweis: Glimepirid wurde abgesetzt (Hypoglykämien). Nächste Vorstellung in drei Monaten mit HbA1c."""
+counterexample = """Metformin 500 mg morgens und abends; Glimepirid 2 mg morgens; Atorvastatin 20 mg abends."""
+
+[[checks]]
+name = "Metformin 1000 mg"
+type = "contains"
+any = ['Metformin.{0,40}1\.?000\s?mg']
+critical = true
+
+[[checks]]
+name = "Empagliflozin 10 mg"
+type = "contains"
+any = ['Empagliflozin.{0,40}10\s?mg']
+critical = true
+
+[[checks]]
+name = "Atorvastatin 20 mg abends"
+type = "contains"
+any = ['Atorvastatin.{0,20}20\s?mg.{0,60}(abends|\b0\W+0\W+1\b)']
+critical = true
+
+[[checks]]
+name = "Pantoprazol bei Bedarf"
+type = "contains"
+any = ['Pantoprazol.{0,80}Bedarf']
+
+[[checks]]
+name = "Glimepirid abgesetzt"
+type = "contains"
+any = ['Glimepirid.{0,60}(abgesetzt|absetzen|nicht mehr|entfällt|gestrichen|beendet)', '(abgesetzt|abzusetzen|entfällt)\W.{0,30}Glimepirid']
+critical = true

@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
+id = "steuer-02-einspruchsfrist"
+profession = "steuer"
+kind = "frist"
+critical = true
+title = "Einspruchsfrist mit Wochenende"
+instruction = """Bis wann muss der Einspruch beim Finanzamt eingehen? Rechne Schritt für Schritt. Fällt das Fristende auf einen Samstag, Sonntag oder gesetzlichen Feiertag, endet die Frist mit Ablauf des nächsten Werktags. Schließe mit einer Zeile "Fristende: TT.MM.JJJJ"."""
+document = """Finanzamt Potsdam · Bescheid für 2026 über Einkommensteuer
+Datum des Bescheids: Montag, 7. Juni 2027. Vermerk: am selben Tag zur Post gegeben.
+Rechtsbehelfsbelehrung: Der Bescheid kann mit dem Einspruch angefochten werden. Die Frist für die Einlegung des Einspruchs beträgt einen Monat. Sie beginnt mit Ablauf des Tages, an dem Ihnen dieser Bescheid bekannt gegeben worden ist. Bei Zusendung durch einfachen Brief gilt die Bekanntgabe am vierten Tag nach Aufgabe zur Post als bewirkt, es sei denn, der Bescheid ist nicht oder zu einem späteren Zeitpunkt zugegangen."""
+reference = """Aufgabe zur Post: Montag, 07.06.2027.
+Bekanntgabe am vierten Tag danach: Freitag, 11.06.2027.
+Ein Monat ab Bekanntgabe endet am 11.07.2027. Das ist ein Sonntag.
+Deshalb endet die Frist am nächsten Werktag.
+Fristende: Montag, 12.07.2027"""
+counterexample = """Bekanntgabe am 11.06.2027, ein Monat später. Fristende: 11.07.2027"""
+
+[[checks]]
+name = "Fristende Montag, 12.07.2027"
+type = "contains"
+any = ['Fristende:?\**\s*(Montag,?\s*)?(den\s*)?12\.\s?(0?7\.|Juli)\s?2027']
+critical = true
+
+[[checks]]
+name = "nicht am Sonntag"
+type = "absent"
+any = ['Fristende:?\**\s*(Sonntag,?\s*)?(den\s*)?11\.\s?0?7\.\s?2027']
+critical = true
+
+[[checks]]
+name = "Bekanntgabe 11.06.2027"
+type = "date"
+value = "2027-06-11"
+
+[[checks]]
+name = "erkennt den Sonntag"
+type = "contains"
+any = ['Sonntag']

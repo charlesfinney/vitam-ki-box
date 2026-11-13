@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
+id = "kanzlei-05-mandantenbrief"
+profession = "kanzlei"
+kind = "schreiben"
+title = "Mandantenbrief in einfacher Sprache"
+instruction = """Schreibe Herrn Albrecht einen kurzen Brief in einfacher Sprache (höchstens 150 Wörter): Was ist das Ergebnis, was bekommt er, warum nicht alles, bis wann könnte er Berufung einlegen, und was empfehlen wir? Keine Fachbegriffe ohne Erklärung."""
+document = """Interne Notiz zur Akte 15 C 77/27 (Albrecht ./. Wohnbau Seeblick GmbH)
+Das Amtsgericht Berlin-Mitte hat mit Urteil vom 2. Juni 2027 der Klage unseres Mandanten Herrn Jonas Albrecht auf Rückzahlung der Mietkaution von 1.800,00 € teilweise stattgegeben: Der Vermieter muss 1.200,00 € nebst Zinsen zahlen. Im Übrigen wurde die Klage abgewiesen, weil der Vermieter wegen Schäden am Parkett 600,00 € einbehalten durfte.
+Kosten: Kläger ein Drittel, Beklagte zwei Drittel.
+Das Urteil wurde uns am 9. Juni 2027 zugestellt. Berufung ist binnen eines Monats ab Zustellung möglich, also bis zum 9. Juli 2027.
+Unsere Einschätzung: Eine Berufung lohnt sich wegen des geringen Restbetrags und des Kostenrisikos nicht."""
+reference = """Sehr geehrter Herr Albrecht,
+das Amtsgericht hat am 2. Juni 2027 entschieden: Ihr früherer Vermieter muss Ihnen 1.200 € von Ihrer Kaution zurückzahlen, dazu Zinsen.
+Die übrigen 600 € darf er behalten, weil das Gericht die Schäden am Parkett als Ihre Sache ansieht.
+Die Kosten des Verfahrens tragen Sie zu einem Drittel, der Vermieter zu zwei Dritteln.
+Sie könnten gegen das Urteil Berufung einlegen, also das nächsthöhere Gericht prüfen lassen. Das ginge bis zum 9. Juli 2027.
+Wir raten davon ab: Es geht nur noch um 600 €, und eine Berufung kostet Sie mehr, als sie bringen kann.
+Mit freundlichen Grüßen"""
+counterexample = """Sie haben gewonnen und bekommen die volle Kaution von 1.800 € zurück. Eine Berufung bis zum 2. Juli 2027 empfehlen wir trotzdem."""
+
+[[checks]]
+name = "bekommt 1.200 €"
+type = "number"
+value = 1200
+critical = true
+
+[[checks]]
+name = "600 € einbehalten"
+type = "number"
+value = 600
+
+[[checks]]
+name = "Grund: Parkett"
+type = "contains"
+any = ['Parkett']
+
+[[checks]]
+name = "Berufungsfrist 9. Juli 2027"
+type = "date"
+value = "2027-07-09"
+critical = true
+
+[[checks]]
+name = "Empfehlung: keine Berufung"
+type = "contains"
+any = ['(raten|rate)\b.{0,40}\bab\b', 'abraten', 'empfehlen.{0,30}(keine|nicht)', 'Berufung.{0,80}(lohnt sich nicht|nicht sinnvoll|nicht empfehlen|empfehlen (wir )?nicht)', '(nicht|keine).{0,40}Berufung (einzulegen|einlegen)']
+critical = true
+
+[[checks]]
+name = "höchstens 150 Wörter"
+type = "max_words"
+value = 150
+
+[[checks]]
+name = "verspricht nicht die volle Kaution"
+type = "absent"
+any = ['(bekommen|erhalten)\w* (Sie )?(die )?(volle|gesamte) Kaution']
+critical = true

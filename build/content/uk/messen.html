@@ -1,0 +1,100 @@
+---
+title: Як ми вимірюємо — Vita AI Concierge
+description: Кожне оновлення перевіряємо на ваших власних завданнях і встановлюємо, лише якщо воно не гірше. А ще — відкритий тест для адвокатів, лікарів і податкових консультантів.
+---
+<main>
+    <!-- Intro -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-24">
+        <h1 class="text-[2.6rem] md:text-[4rem] font-light leading-[1.15] tracking-tight mb-6">Як ми вимірюємо.</h1>
+        <p class="text-[17px] md:text-[19px] font-light leading-relaxed text-ink/80 max-w-xl">ШІ, який не можна перевірити, доводиться брати на віру. Vita ви зможете перевірити самі: кожне оновлення — на ваших власних завданнях, кожну цифру — з відкритою методикою.</p>
+      </div>
+    </section>
+
+    <!-- Test bench -->
+    <section class="sec-alt">
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20 grid md:grid-cols-[1.2fr_1fr] gap-12 items-start">
+        <div>
+          <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4">Випробувальний стенд у вашій валізі.</h2>
+          <p class="text-[16px] text-muted mb-10 max-w-xl">Під час налаштування ми разом з вами складаємо близько 20 завдань із вашої власної роботи: процесуальний документ, який треба стисло переказати, строк, медичний висновок. Вони залишаються у валізі, як і все інше.</p>
+          <ol class="grid gap-4">
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">1</p>
+              <p class="text-[1.1rem] font-normal mb-2">Перед кожним оновленням</p>
+              <p class="text-[15px] text-muted">Нова версія відповідає на кожне ваше завдання 25 разів, чинна — теж. Перевіряємо, чи правильні факти, строки й суми і чи нічого не вигадано.</p>
+            </li>
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">2</p>
+              <p class="text-[1.1rem] font-normal mb-2">Лише якщо вона не гірша</p>
+              <p class="text-[15px] text-muted">Встановлюємо оновлення, лише якщо в середньому воно не гірше і не погіршується в жодній критичній перевірці — наприклад, щодо строку чи попередження про невідкладний стан. Інакше залишається ваш чинний ШІ.</p>
+            </li>
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">3</p>
+              <p class="text-[1.1rem] font-normal mb-2">Чорним по білому</p>
+              <p class="text-[15px] text-muted">Результат записуємо у вашу сервісну книжку з підписом. Так ви бачите, що ваш ШІ стає кращим і ніколи потай не гіршає.</p>
+            </li>
+          </ol>
+        </div>
+        <figure class="md:sticky md:top-8">
+          <img src="../assets/img/serviceheft-muster.png" width="1120" height="1610" alt="Зразок запису в сервісній книжці (німецькою): перевірка оновлення з результатами до і після, рішення, печатка й підписи" class="w-full h-auto rounded-ui shadow-[0_20px_50px_rgba(66,66,87,.18)]" />
+          <figcaption class="text-[13px] text-muted mt-3">Зразок із прикладовими значеннями, німецькою, як і сама сервісна книжка. Такий запис ми друкуємо й підписуємо у вас.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Open benchmark -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4 max-w-3xl">Відкритий тест Vita.</h2>
+        <p class="text-[16px] text-muted mb-10 max-w-xl">Наскільки добре відкриті моделі справляються з німецькою юридичною, медичною та податковою роботою? Відкритого тесту для цього досі немає. Ми його створюємо й публікуємо все: завдання, правила перевірки, код і результати.</p>
+        <ul class="border-t border-line">
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">15 завдань</p>
+            <p class="text-[15px] text-muted">Версія 0.1: по п’ять для адвокатської контори, лікарської практики й податкового консультанта. На вигаданих документах, ніколи на справжніх справах.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">86 правил перевірки</p>
+            <p class="text-[15px] text-muted">Строки, суми, діагнози — і те, чого не можна вигадувати.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">25 відповідей на завдання</p>
+            <p class="text-[15px] text-muted">5 прогонів × 5 відповідей. Відповіді різняться, тому ми повідомляємо середнє значення разом із похибкою.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">Швидкість із самого тексту</p>
+            <p class="text-[15px] text-muted">Час до першого слова, слів за секунду, швидкість читання.</p>
+          </li>
+        </ul>
+        <p class="text-[15px] text-muted mt-8 max-w-xl">Кожне завдання має правильну зразкову відповідь і типову неправильну. Автоматичний тест перевіряє, що правила приймають правильну й розпізнають неправильну.</p>
+        <p class="text-[15px] text-muted mt-4 max-w-xl">Перш ніж публікувати результати, фахівці з кожної галузі перевіряють завдання. Перші результати з’являться з першою серією — виміряні на обладнанні Vita.</p>
+        <p class="text-[15px] mt-6"><a href="https://github.com/charlesfinney/vitam-ki-box/tree/main/pruefstand" class="roll roll-arrow">Переглянути завдання й код (завдання німецькою)</a></p>
+        <p class="text-[13px] text-muted mt-2">Код — за ліцензією Apache 2.0, завдання — за CC BY 4.0: можна вільно використовувати з посиланням на джерело.</p>
+      </div>
+    </section>
+
+    <!-- Three settings -->
+    <section class="bg-slate text-paper">
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4 max-w-3xl">Три режими, обрані за вимірюваннями.</h2>
+        <p class="text-[16px] text-paper/80 mb-10 max-w-xl">Ви обираєте лише, як хочете працювати. Яка модель стоїть за кожним режимом, вирішує випробувальний стенд.</p>
+        <ul class="grid md:grid-cols-3 gap-4">
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Швидко</p><p class="text-[15px] text-paper/80">Найшвидша модель, що відстає від найкращої не більше ніж на 10 пунктів. Для диктування й коротких запитань.</p></li>
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Збалансовано</p><p class="text-[15px] text-paper/80">Якість важить удвічі більше за швидкість. Для щоденної роботи.</p></li>
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Ретельно</p><p class="text-[15px] text-paper/80">Модель із найкращими результатами, навіть якщо вона працює довше. Для строків, медичних висновків і податкових повідомлень.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- What we do not do -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-8">Чого ми не робимо.</h2>
+        <ul class="border-t border-line max-w-3xl">
+          <li class="py-5 border-b border-line text-[16px]">Жодне ваше завдання не залишає валізи — навіть для вимірювань.</li>
+          <li class="py-5 border-b border-line text-[16px]">Жодної цифри без вимірювання: до першої серії ми називаємо цільові значення, а не результати.</li>
+          <li class="py-5 border-b border-line text-[16px]">Жодних прикрашених таблиць: ми публікуємо й те, що випадає погано.</li>
+        </ul>
+        <p class="text-[15px] mt-8"><a href="index.html#kaufen" class="btn btn-dark">Замовити Vita</a></p>
+      </div>
+    </section>
+  </main>

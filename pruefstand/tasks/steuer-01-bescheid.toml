@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
+id = "steuer-01-bescheid"
+profession = "steuer"
+kind = "extraktion"
+title = "Steuerbescheid: Erstattung und Abweichung"
+instruction = """Was steht im Bescheid? Nenne die festgesetzte Einkommensteuer, ob es eine Erstattung oder Nachzahlung gibt und wie hoch, das Datum des Bescheids und die Abweichung von der Erklärung, die das Finanzamt erläutert."""
+document = """Finanzamt Potsdam · Steuernummer 046/123/45678 · Datum: 14.06.2027
+Bescheid für 2026 über Einkommensteuer, Solidaritätszuschlag und Kirchensteuer
+Festgesetzt werden: Einkommensteuer 14.236,00 €, Solidaritätszuschlag 0,00 €, Kirchensteuer 0,00 €.
+Abrechnung: bereits gezahlt (Lohnsteuer) 15.112,00 €. Erstattung: 876,00 €. Der Betrag wird auf das Konto DE89 3704 0044 0532 0130 00 überwiesen.
+Erläuterungen: Die Aufwendungen für das häusliche Arbeitszimmer wurden nur in Höhe der Jahrespauschale von 1.260 € berücksichtigt."""
+reference = """Bescheid vom 14.06.2027 für 2026.
+Festgesetzte Einkommensteuer: 14.236,00 €.
+Bereits gezahlt wurden 15.112,00 € Lohnsteuer, daher Erstattung von 876,00 € auf das angegebene Konto.
+Abweichung: Das Arbeitszimmer wurde nur mit der Jahrespauschale von 1.260 € berücksichtigt."""
+counterexample = """Festgesetzte Einkommensteuer 14.236 €. Nachzahlung von 876 €, fällig in einem Monat."""
+
+[[checks]]
+name = "Einkommensteuer 14.236 €"
+type = "number"
+value = 14236
+critical = true
+
+[[checks]]
+name = "Erstattung (keine Nachzahlung)"
+type = "contains"
+any = ['Erstattung', 'erstattet', 'zurück']
+critical = true
+
+[[checks]]
+name = "Betrag 876 €"
+type = "number"
+value = 876
+critical = true
+
+[[checks]]
+name = "Bescheiddatum 14.06.2027"
+type = "date"
+value = "2027-06-14"
+
+[[checks]]
+name = "Arbeitszimmer nur Pauschale"
+type = "contains"
+any = ['Arbeitszimmer.{0,80}(1\.?260|Pauschale)', '(Pauschale|1\.?260).{0,80}Arbeitszimmer']
+
+[[checks]]
+name = "keine Nachzahlung behauptet"
+type = "absent"
+any = ['Nachzahlung (von|in Höhe von|:|beträgt)\s*\d']
+critical = true

@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright 2026 Vitam Box GbR · invented documents, no real client data
+id = "steuer-04-rechnung"
+profession = "steuer"
+kind = "rechnen"
+title = "Rechnung mit 19 % und 7 % Umsatzsteuer"
+instruction = """Berechne den Nettobetrag, die Umsatzsteuer je Steuersatz und den Bruttobetrag der Rechnung. Runde auf volle Cent."""
+document = """Rechnung Nr. 2027-031 · Kanzlei Dr. Seifert Steuerberatung an Hoffmann Design GmbH
+Pos. 1: Beratungsleistung, 10 Stunden à 125,00 € netto (Umsatzsteuer 19 %)
+Pos. 2: Fachbuch "Umsatzsteuer 2027", 48,60 € netto (Umsatzsteuer 7 %)"""
+reference = """Netto: 1.250,00 € (Beratung) + 48,60 € (Buch) = 1.298,60 €
+Umsatzsteuer 19 % auf 1.250,00 €: 237,50 €
+Umsatzsteuer 7 % auf 48,60 €: 3,40 €
+Umsatzsteuer gesamt: 240,90 €
+Brutto: 1.539,50 €"""
+counterexample = """Netto 1.298,60 €, Umsatzsteuer 19 %: 246,73 €, Brutto 1.545,33 €."""
+
+[[checks]]
+name = "Netto Beratung 1.250 €"
+type = "number"
+value = 1250
+
+[[checks]]
+name = "USt 19 %: 237,50 €"
+type = "number"
+value = 237.50
+critical = true
+
+[[checks]]
+name = "USt 7 %: 3,40 €"
+type = "number"
+value = 3.40
+critical = true
+
+[[checks]]
+name = "Netto gesamt 1.298,60 €"
+type = "number"
+value = 1298.60
+
+[[checks]]
+name = "Brutto 1.539,50 €"
+type = "number"
+value = 1539.50
+critical = true
