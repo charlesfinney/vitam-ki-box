@@ -9,7 +9,8 @@ Live: https://charlesfinney.github.io/vitam-ki-box/ (German), `/en/` (English) a
 ## What's here
 1. Built pages, served by GitHub Pages: German at the root (`index.html`, Impressum, Datenschutz, three article stubs `artikel-*.html`), English in `en/`, Ukrainian in `uk/`. Do not edit these by hand: the next build overwrites them.
 2. `assets/`: compiled CSS, self-hosted fonts (Unbounded for headings, Inter for text; both SIL OFL, Latin and Cyrillic), images.
-3. `build/`: the sources and the build.
+3. `pruefstand/`: the Vita Prüfstand, the test bench that checks every update on a client's own tasks and the open test for German legal, medical and tax work (code, 15 tasks, tests; see its README). Explained to readers on `messen.html`.
+4. `build/`: the sources and the build.
    - `content/<lang>/*.html`: each page's text, written natively per language, with a short header (`title`, `description`).
    - `i18n/<lang>.json`: top bar, header and footer text per language.
    - `templates/`: page shell, top bar and header, footer, flags. Written once for all languages.

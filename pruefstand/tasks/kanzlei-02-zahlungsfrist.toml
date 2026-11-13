@@ -1,0 +1,53 @@
+id = "kanzlei-02-zahlungsfrist"
+profession = "kanzlei"
+kind = "frist"
+critical = true
+title = "Zahlungsaufforderung: Frist, Betrag, Konto"
+instruction = """Das Schreiben ist laut Eingangsstempel am 12. Mai 2027 zugegangen. Bis zu welchem Datum muss gezahlt werden, welcher Betrag insgesamt, auf welches Konto und mit welchem Verwendungszweck? Antworte in vier kurzen Zeilen."""
+document = """Rechtsanwälte Brandt & Sohn · Kurfürstendamm 40 · 10719 Berlin
+An: Schreinerei Holzmann GmbH, z. Hd. Herrn Peter Holzmann, Am Mühlbach 3, 14467 Potsdam
+Unser Zeichen: BS-2027/0412 · Berlin, 10. Mai 2027
+Forderung unserer Mandantin Baustoffe Krüger KG aus Rechnung Nr. 2027-118 vom 2. Februar 2027
+
+Sehr geehrter Herr Holzmann,
+wir zeigen an, dass wir die Baustoffe Krüger KG vertreten. Aus der oben genannten Rechnung ist ein Betrag von 2.480,00 € offen. Hinzu kommen Mahnkosten von 15,00 €.
+Wir fordern Sie auf, den Gesamtbetrag von 2.495,00 € binnen 14 Tagen ab Zugang dieses Schreibens auf das Konto unserer Kanzlei (IBAN DE12 1001 0010 0123 4567 89) zu überweisen. Geben Sie als Verwendungszweck unser Zeichen an.
+Nach fruchtlosem Fristablauf werden wir ohne weitere Ankündigung Klage erheben.
+Mit freundlichen Grüßen
+Dr. Lena Brandt, Rechtsanwältin
+
+[Eingangsstempel Schreinerei Holzmann: eingegangen am 12.05.2027]"""
+reference = """Zahlen bis: 26.05.2027 (14 Tage ab Zugang am 12.05.2027)
+Betrag: 2.495,00 € (2.480,00 € Forderung plus 15,00 € Mahnkosten)
+Konto: IBAN DE12 1001 0010 0123 4567 89 (Kanzlei Brandt & Sohn)
+Verwendungszweck: BS-2027/0412"""
+counterexample = """Zahlen bis 24.05.2027 (14 Tage ab Schreiben vom 10. Mai), Betrag 2.480,00 €, Verwendungszweck Rechnung 2027-118."""
+
+[[checks]]
+name = "Frist 26.05.2027"
+type = "date"
+value = "2027-05-26"
+critical = true
+
+[[checks]]
+name = "rechnet nicht ab Briefdatum"
+type = "absent"
+any = ['24\.\s?0?5\.\s?(20)?27', '24\.\s?Mai']
+critical = true
+
+[[checks]]
+name = "Gesamtbetrag 2.495,00 €"
+type = "number"
+value = 2495
+critical = true
+
+[[checks]]
+name = "IBAN"
+type = "contains"
+any = ['DE12\s?1001\s?0010\s?0123\s?4567\s?89']
+critical = true
+
+[[checks]]
+name = "Verwendungszweck BS-2027/0412"
+type = "contains"
+any = ['BS-2027/0412']

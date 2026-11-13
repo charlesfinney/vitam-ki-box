@@ -1,0 +1,65 @@
+id = "praxis-01-arztbrief"
+profession = "praxis"
+kind = "zusammenfassung"
+critical = true
+title = "Entlassungsbrief: Diagnosen und Medikation"
+instruction = """Fasse den Entlassungsbrief für die Hausarztpraxis zusammen: Diagnosen, was sich an der Medikation geändert hat, und was zu tun ist. Höchstens acht Zeilen."""
+document = """Klinikum Havelland · Klinik für Innere Medizin · Entlassungsbrief
+Patientin: Frau Gisela Brandt, geb. 03.11.1952
+Aufenthalt: 12.04.2027 bis 16.04.2027
+Diagnosen: 1. Paroxysmales Vorhofflimmern (I48.0), erstmals diagnostiziert. 2. Arterielle Hypertonie (I10.90).
+Verlauf: Aufnahme mit Herzrasen seit dem Vortag. Im EKG Vorhofflimmern mit schneller Überleitung. Spontane Konversion in den Sinusrhythmus am 13.04.2027. CHA2DS2-VASc-Score 3.
+Medikation bei Entlassung: Apixaban 5 mg 1-0-1 (neu); Metoprololsuccinat 47,5 mg 1-0-0 (Dosis erhöht, bisher 23,75 mg); Ramipril 5 mg 1-0-0 (unverändert). ASS 100 mg wurde abgesetzt.
+Empfehlung: Kontrolle beim Hausarzt in vier Wochen mit EKG und Kreatinin. Bei erneutem Herzrasen, Luftnot oder Schwindel sofort ärztliche Vorstellung."""
+reference = """Diagnosen: paroxysmales Vorhofflimmern (I48.0), neu; arterielle Hypertonie (I10.90).
+Neu: Apixaban 5 mg 1-0-1 (Antikoagulation).
+Erhöht: Metoprololsuccinat auf 47,5 mg 1-0-0 (bisher 23,75 mg).
+Unverändert: Ramipril 5 mg 1-0-0.
+Abgesetzt: ASS 100 mg.
+Zu tun: Kontrolle in vier Wochen mit EKG und Kreatinin. Bei Herzrasen, Luftnot oder Schwindel sofort vorstellen."""
+counterexample = """Vorhofflimmern. Neu: Marcumar nach INR. ASS 100 mg weiter. Kontrolle in vier Wochen."""
+
+[[checks]]
+name = "Diagnose Vorhofflimmern"
+type = "contains"
+any = ['Vorhofflimmern']
+critical = true
+
+[[checks]]
+name = "Apixaban neu"
+type = "contains"
+any = ['Apixaban.{0,60}(neu|begonnen|angesetzt|zusätzlich)', '(neu|begonnen|angesetzt)\W.{0,40}Apixaban']
+critical = true
+
+[[checks]]
+name = "Apixaban 5 mg zweimal täglich"
+type = "contains"
+any = ['Apixaban.{0,30}5\s?mg.{0,30}(1-0-1|zweimal|2\s?x)', 'Apixaban.{0,30}(1-0-1|zweimal|2\s?x).{0,20}5\s?mg']
+
+[[checks]]
+name = "ASS abgesetzt"
+type = "contains"
+any = ['\bASS\b.{0,40}(abgesetzt|gestoppt|beendet|nicht mehr)', '(abgesetzt|gestoppt|beendet)\W.{0,30}\bASS\b']
+critical = true
+
+[[checks]]
+name = "Metoprolol erhöht"
+type = "contains"
+any = ['Metoprolol.{0,60}(erhöht|47,5)', '(erhöht|Erhöhung).{0,40}Metoprolol']
+
+[[checks]]
+name = "Kontrolle in vier Wochen"
+type = "contains"
+any = ['vier Wochen', '4 Wochen', '14\.\s?0?5\.\s?(20)?27']
+critical = true
+
+[[checks]]
+name = "Kreatinin kontrollieren"
+type = "contains"
+any = ['Kreatinin']
+
+[[checks]]
+name = "erfindet kein anderes Gerinnungsmittel"
+type = "absent"
+any = ['Marcumar', 'Phenprocoumon', 'Warfarin', 'Rivaroxaban', 'Xarelto', 'Edoxaban', 'Dabigatran']
+critical = true

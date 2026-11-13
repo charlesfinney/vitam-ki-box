@@ -1,0 +1,41 @@
+id = "steuer-05-fristenliste"
+profession = "steuer"
+kind = "frist"
+title = "Fristen in die richtige Reihenfolge"
+instruction = """Liste alle Fristen aus dem Schreiben in zeitlicher Reihenfolge, die früheste zuerst, jeweils mit Datum und was zu tun ist."""
+document = """Notiz zum Mandat Hoffmann Design GmbH nach Telefonat mit dem Finanzamt:
+Die fehlenden Belege zur Betriebsprüfung sollen bis zum 30.09.2027 nachgereicht werden.
+Die Einkommensteuererklärung 2026 der Gesellschafterin ist mit Beratung bis zum 29.02.2028 abzugeben.
+Die Umsatzsteuer-Voranmeldung für August 2027 ist bis zum 10.09.2027 zu übermitteln.
+Die Gewerbesteuer-Vorauszahlung ist am 15.11.2027 fällig."""
+reference = """1. 10.09.2027: Umsatzsteuer-Voranmeldung für August 2027 übermitteln.
+2. 30.09.2027: fehlende Belege zur Betriebsprüfung nachreichen.
+3. 15.11.2027: Gewerbesteuer-Vorauszahlung zahlen.
+4. 29.02.2028: Einkommensteuererklärung 2026 der Gesellschafterin abgeben."""
+counterexample = """30.09.2027: Belege nachreichen. 29.02.2028: Einkommensteuererklärung. 10.09.2027: Umsatzsteuer-Voranmeldung. 15.11.2027: Gewerbesteuer."""
+
+[[checks]]
+name = "Reihenfolge früheste zuerst"
+type = "order"
+items = [['10\.\s?0?9\.\s?2027', '10\.\s?September'], ['30\.\s?0?9\.\s?2027', '30\.\s?September'], ['15\.\s?11\.\s?2027', '15\.\s?November'], ['29\.\s?0?2\.\s?2028', '29\.\s?Februar']]
+critical = true
+
+[[checks]]
+name = "Umsatzsteuer-Voranmeldung"
+type = "contains"
+any = ['Umsatzsteuer-?\s?Voranmeldung', 'UStVA', 'USt-VA']
+
+[[checks]]
+name = "Belege Betriebsprüfung"
+type = "contains"
+any = ['Belege']
+
+[[checks]]
+name = "Gewerbesteuer-Vorauszahlung"
+type = "contains"
+any = ['Gewerbesteuer']
+
+[[checks]]
+name = "Einkommensteuererklärung 2026"
+type = "contains"
+any = ['Einkommensteuer']

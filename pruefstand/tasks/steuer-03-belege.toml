@@ -1,0 +1,40 @@
+id = "steuer-03-belege"
+profession = "steuer"
+kind = "rechnen"
+title = "Werbungskosten: Belege summieren"
+instruction = """Summiere die Belege je Kategorie und insgesamt. Nenne die Summen in Euro mit Cent."""
+document = """Belege von Frau Miriam Hoffmann, Werbungskosten 2026:
+1. Fachbuch "Datenschutz kompakt": 49,90 € (Arbeitsmittel)
+2. Bürostuhl: 289,00 € (Arbeitsmittel)
+3. Seminar "Datenschutz in der Praxis": 390,00 € (Fortbildung)
+4. Fahrtkosten zum Seminar: 46,80 € (Fortbildung)
+5. Kontoführungsgebühren: 16,00 € (Sonstiges)
+6. Fachzeitschrift, Jahresabo: 132,00 € (Arbeitsmittel)"""
+reference = """Arbeitsmittel: 49,90 € + 289,00 € + 132,00 € = 470,90 €
+Fortbildung: 390,00 € + 46,80 € = 436,80 €
+Sonstiges: 16,00 €
+Gesamt: 923,70 €"""
+counterexample = """Arbeitsmittel 470,90 €, Fortbildung 390,00 €, Sonstiges 16,00 €, gesamt 876,90 €."""
+
+[[checks]]
+name = "Arbeitsmittel 470,90 €"
+type = "number"
+value = 470.90
+critical = true
+
+[[checks]]
+name = "Fortbildung 436,80 €"
+type = "number"
+value = 436.80
+critical = true
+
+[[checks]]
+name = "Sonstiges 16,00 €"
+type = "number"
+value = 16
+
+[[checks]]
+name = "Gesamt 923,70 €"
+type = "number"
+value = 923.70
+critical = true

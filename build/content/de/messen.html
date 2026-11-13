@@ -1,0 +1,99 @@
+---
+title: So messen wir — Vita AI Concierge
+description: Jedes Update wird auf Ihren eigenen Aufgaben geprüft und nur eingespielt, wenn es nicht schlechter ist. Dazu ein offener Test für Kanzleien, Arztpraxen und Steuerberatungen.
+---
+<main>
+    <!-- Einstieg -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-24">
+        <h1 class="text-[2.6rem] md:text-[4rem] font-light leading-[1.15] tracking-tight mb-6">So messen wir.</h1>
+        <p class="text-[17px] md:text-[19px] font-light leading-relaxed text-ink/80 max-w-xl">Einer KI, die Sie nicht prüfen können, müssen Sie glauben. Vita sollen Sie nachmessen können: jedes Update auf Ihren eigenen Aufgaben, jede Zahl mit offengelegter Methode.</p>
+      </div>
+    </section>
+
+    <!-- Prüfstand -->
+    <section class="sec-alt">
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20 grid md:grid-cols-[1.2fr_1fr] gap-12 items-start">
+        <div>
+          <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4">Ihr Prüfstand im Koffer.</h2>
+          <p class="text-[16px] text-muted mb-10 max-w-xl">Bei der Einrichtung stellen wir mit Ihnen rund 20 Aufgaben aus Ihrer eigenen Arbeit zusammen: einen Schriftsatz, der zusammengefasst werden soll, eine Frist, einen Befund. Sie bleiben im Koffer, wie alles andere.</p>
+          <ol class="grid gap-4">
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">1</p>
+              <p class="text-[1.1rem] font-normal mb-2">Vor jedem Update</p>
+              <p class="text-[15px] text-muted">Die neue Version beantwortet Ihre Aufgaben je 25-mal, die bisherige auch. Gemessen wird, ob Fakten, Fristen und Beträge stimmen und nichts erfunden wird.</p>
+            </li>
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">2</p>
+              <p class="text-[1.1rem] font-normal mb-2">Nur wenn sie nicht schlechter ist</p>
+              <p class="text-[15px] text-muted">Eingespielt wird nur, was im Mittel nicht schlechter abschneidet und bei keiner kritischen Prüfung nachlässt, etwa bei einer Frist oder einem Notfallhinweis. Sonst bleibt Ihre bisherige KI.</p>
+            </li>
+            <li class="card p-6">
+              <p class="text-[13px] text-muted mb-1">3</p>
+              <p class="text-[1.1rem] font-normal mb-2">Schwarz auf weiß</p>
+              <p class="text-[15px] text-muted">Das Ergebnis steht in Ihrem Serviceheft, mit Unterschrift. So sehen Sie, dass Ihre KI besser wird und nie heimlich schlechter.</p>
+            </li>
+          </ol>
+        </div>
+        <figure class="md:sticky md:top-8">
+          <img src="assets/img/serviceheft-muster.png" width="1120" height="1610" alt="Muster eines Serviceheft-Eintrags: Update-Prüfung mit Ergebnissen vorher und nachher, Entscheidung, Stempel und Unterschriften" class="w-full h-auto rounded-ui shadow-[0_20px_50px_rgba(66,66,87,.18)]" />
+          <figcaption class="text-[13px] text-muted mt-3">Muster mit Beispielwerten. So sieht ein Eintrag aus, den wir bei Ihnen ausdrucken und unterschreiben.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Offener Benchmark -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4 max-w-3xl">Der offene Vita&#8209;Test.</h2>
+        <p class="text-[16px] text-muted mb-10 max-w-xl">Wie gut sind offene Modelle bei deutscher Kanzlei-, Praxis- und Steuerarbeit? Dafür gibt es bisher keinen offenen Test. Wir bauen ihn und legen alles offen: Aufgaben, Prüfregeln, Code und Ergebnisse.</p>
+        <ul class="border-t border-line">
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">15 Aufgaben</p>
+            <p class="text-[15px] text-muted">Version 0.1: je fünf aus Kanzlei, Arztpraxis und Steuerberatung. Mit erfundenen Dokumenten, nie mit echten Akten.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">86 Prüfregeln</p>
+            <p class="text-[15px] text-muted">Fristen, Beträge, Diagnosen, und was nicht erfunden werden darf.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">25 Antworten je Aufgabe</p>
+            <p class="text-[15px] text-muted">5 Läufe × 5 Antworten. Antworten schwanken, darum melden wir den Mittelwert mit seiner Unsicherheit.</p>
+          </li>
+          <li class="grid md:grid-cols-[16rem_1fr] gap-1 md:gap-8 py-6 border-b border-line">
+            <p class="text-[17px] tabular-nums">Tempo aus dem Text</p>
+            <p class="text-[15px] text-muted">Zeit bis zum ersten Wort, Wörter pro Sekunde, Lesetempo.</p>
+          </li>
+        </ul>
+        <p class="text-[15px] text-muted mt-8 max-w-xl">Jede Aufgabe hat eine richtige Musterantwort und eine typische falsche. Ein automatischer Test prüft, dass die Regeln die richtige annehmen und die falsche erkennen.</p>
+        <p class="text-[15px] text-muted mt-4 max-w-xl">Bevor wir Ergebnisse veröffentlichen, prüfen Fachleute aus jedem Bereich die Aufgaben. Erste Ergebnisse folgen mit der ersten Serie, gemessen auf der Vita-Hardware.</p>
+        <p class="text-[15px] mt-6"><a href="https://github.com/charlesfinney/vitam-ki-box/tree/main/pruefstand" class="roll roll-arrow">Aufgaben und Code ansehen</a></p>
+      </div>
+    </section>
+
+    <!-- Drei Einstellungen -->
+    <section class="bg-slate text-paper">
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-4 max-w-3xl">Drei Einstellungen, gewählt nach Messung.</h2>
+        <p class="text-[16px] text-paper/80 mb-10 max-w-xl">Sie wählen nur, wie Sie arbeiten möchten. Welches Modell dahintersteckt, entscheidet der Prüfstand.</p>
+        <ul class="grid md:grid-cols-3 gap-4">
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Schnell</p><p class="text-[15px] text-paper/80">Das schnellste Modell, das höchstens 10 Punkte unter dem besten liegt. Für Diktate und kurze Fragen.</p></li>
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Ausgewogen</p><p class="text-[15px] text-paper/80">Qualität zählt doppelt so viel wie Tempo. Für den Arbeitsalltag.</p></li>
+          <li class="rounded-ui bg-paper/10 p-7"><p class="text-[1.3rem] font-light mb-2">Gründlich</p><p class="text-[15px] text-paper/80">Das Modell mit den besten Ergebnissen, auch wenn es länger dauert. Für Fristen, Befunde und Bescheide.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Was wir nicht tun -->
+    <section>
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <h2 class="text-[1.9rem] md:text-[2.6rem] font-light leading-tight mb-8">Was wir nicht tun.</h2>
+        <ul class="border-t border-line max-w-3xl">
+          <li class="py-5 border-b border-line text-[16px]">Keine Ihrer Aufgaben verlässt den Koffer, auch nicht zum Messen.</li>
+          <li class="py-5 border-b border-line text-[16px]">Keine Zahl ohne Messung: Bis zur ersten Serie nennen wir Zielwerte, keine Ergebnisse.</li>
+          <li class="py-5 border-b border-line text-[16px]">Keine geschönten Tabellen: Wir veröffentlichen auch, was schlecht abschneidet.</li>
+        </ul>
+        <p class="text-[15px] mt-8"><a href="index.html#kaufen" class="btn btn-dark">Vita bestellen</a></p>
+      </div>
+    </section>
+  </main>

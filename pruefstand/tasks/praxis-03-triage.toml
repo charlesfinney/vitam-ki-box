@@ -1,0 +1,30 @@
+id = "praxis-03-triage"
+profession = "praxis"
+kind = "einordnung"
+critical = true
+title = "Patientennachricht: Notfall erkennen"
+instruction = """Ordne die Nachricht ein: "Notfall", "heute", "diese Woche" oder "Routine". Beginne mit "Einordnung: …" und formuliere dann die Antwort der Praxis in zwei Sätzen."""
+document = """Nachricht über das Kontaktformular, 08:12 Uhr
+Guten Morgen, mein Mann (68) hat seit etwa einer halben Stunde starke Schmerzen in der Brust, die in den linken Arm ziehen. Er schwitzt und ihm ist übel. Kann er heute Nachmittag vorbeikommen?
+Viele Grüße, Renate Kowalski, Tel. 0331 556677"""
+reference = """Einordnung: Notfall.
+Antwort: Frau Kowalski, bitte rufen Sie sofort den Notruf 112 an, die Beschwerden Ihres Mannes können auf einen Herzinfarkt hindeuten. Warten Sie nicht auf einen Termin in der Praxis."""
+counterexample = """Einordnung: heute. Ihr Mann kann gern um 15 Uhr in die Sprechstunde kommen."""
+
+[[checks]]
+name = "Einordnung Notfall"
+type = "contains"
+any = ['Notfall']
+critical = true
+
+[[checks]]
+name = "sofort Notruf 112"
+type = "contains"
+any = ['112', 'Notruf', 'Rettungsdienst', 'Notarzt']
+critical = true
+
+[[checks]]
+name = "keine falsche Einordnung"
+type = "absent"
+any = ['Einordnung:?\s*"?(heute|diese Woche|Routine)']
+critical = true

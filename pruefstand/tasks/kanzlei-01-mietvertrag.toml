@@ -1,0 +1,71 @@
+id = "kanzlei-01-mietvertrag"
+profession = "kanzlei"
+kind = "zusammenfassung"
+title = "Mietvertrag in acht Punkten"
+instruction = """Fasse diesen Mietvertrag für die Mandantin in höchstens acht Punkten zusammen: Beginn, Miete, Erhöhungen, Kündigung, Kosten, Tiere und alles, was ungewöhnlich ist. Nenne Beträge und Daten genau."""
+document = """Mietvertrag über Wohnraum
+zwischen der Hausverwaltung Lindenhof GmbH, Lindenstraße 12, 10969 Berlin (Vermieterin), und Frau Dr. Anna Weber (Mieterin).
+§ 1 Mietsache: Wohnung im 3. OG links, Lindenstraße 12, 10969 Berlin, drei Zimmer, ca. 78 m².
+§ 2 Mietzeit: Das Mietverhältnis beginnt am 1. März 2027 und läuft auf unbestimmte Zeit.
+§ 3 Miete: Die Nettokaltmiete beträgt 1.150,00 € monatlich, zuzüglich einer Vorauszahlung auf die Betriebskosten von 210,00 €.
+§ 4 Staffelmiete: Die Nettokaltmiete erhöht sich jeweils zum 1. März eines Jahres, erstmals zum 1. März 2028, um 2 %.
+§ 9 Kündigung: Die Mieterin kann mit einer Frist von drei Monaten kündigen. Die Kündigung bedarf der Schriftform.
+§ 11 Kleinreparaturen: Kosten für Kleinreparaturen trägt die Mieterin bis 100 € im Einzelfall, höchstens 400 € im Jahr.
+§ 13 Tierhaltung: Hunde und Katzen nur mit schriftlicher Zustimmung der Vermieterin.
+§ 14 Untervermietung: Eine Untervermietung, auch teilweise, ist ausgeschlossen.
+§ 15 Schlussbestimmungen: Änderungen bedürfen der Schriftform."""
+reference = """1. Beginn am 1. März 2027, unbefristet.
+2. Nettokaltmiete 1.150,00 € im Monat, dazu 210,00 € Vorauszahlung auf die Betriebskosten.
+3. Staffelmiete: jedes Jahr zum 1. März plus 2 %, erstmals 2028.
+4. Kündigung durch die Mieterin mit drei Monaten Frist, schriftlich.
+5. Kleinreparaturen trägt die Mieterin bis 100 € je Fall, höchstens 400 € im Jahr.
+6. Hunde und Katzen nur mit schriftlicher Zustimmung.
+7. Ungewöhnlich: Untervermietung ist ganz ausgeschlossen (§ 14).
+8. Eine Kaution ist im Vertrag nicht geregelt."""
+counterexample = """Beginn 1. April 2027, Miete 1.150 €, Kaution 3.450 €, Kündigung mit drei Monaten Frist, Untervermietung mit Zustimmung möglich."""
+
+[[checks]]
+name = "Beginn 1. März 2027"
+type = "date"
+value = "2027-03-01"
+critical = true
+
+[[checks]]
+name = "Nettokaltmiete 1.150 €"
+type = "number"
+value = 1150
+critical = true
+
+[[checks]]
+name = "Betriebskosten 210 €"
+type = "number"
+value = 210
+
+[[checks]]
+name = "Staffel 2 % pro Jahr"
+type = "contains"
+any = ['2\s?%', 'zwei Prozent']
+critical = true
+
+[[checks]]
+name = "Kündigungsfrist drei Monate"
+type = "contains"
+any = ['drei Monat', '3 Monat', 'dreimonatig']
+critical = true
+
+[[checks]]
+name = "Kleinreparaturen 100 € / 400 €"
+type = "number"
+value = 400
+
+[[checks]]
+name = "Untervermietung ausgeschlossen"
+type = "contains"
+any = ['Untervermiet\w*.{0,60}(ausgeschlossen|nicht (erlaubt|zulässig|gestattet)|verboten|untersagt)', '(ausgeschlossen|nicht erlaubt|verboten|untersagt).{0,60}Untervermiet']
+critical = true
+
+[[checks]]
+name = "erfindet keine Kaution"
+type = "absent"
+any = ['Kaution[^.;]{0,25}\d[\d.,]*\s?(€|Euro|EUR)']
+critical = true

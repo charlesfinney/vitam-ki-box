@@ -1,0 +1,58 @@
+id = "kanzlei-03-posteingang"
+profession = "kanzlei"
+kind = "einordnung"
+critical = true
+title = "Posteingang: Ladung erkennen"
+instruction = """Ordne das Schreiben genau einer Kategorie zu: "Termin & Frist", "Rechnung", "Anfrage" oder "Werbung". Beginne mit "Kategorie: …". Nenne dann Datum, Uhrzeit, Ort, Aktenzeichen und was die Kanzlei veranlassen muss."""
+document = """Amtsgericht Potsdam · Hegelallee 8 · 14467 Potsdam
+Geschäftsnummer: 12 C 345/27
+In dem Rechtsstreit Ostermann ./. Lehmann
+Ladung
+Termin zur mündlichen Verhandlung wird bestimmt auf Donnerstag, 22. Juli 2027, 10:30 Uhr, Saal 214.
+Das persönliche Erscheinen der Beklagten, Frau Ilse Lehmann, wird zur Aufklärung des Sachverhalts angeordnet.
+Bleibt die Beklagte trotz Anordnung aus, kann gegen sie ein Ordnungsgeld festgesetzt werden.
+Auf Anordnung · Schulz, Justizbeschäftigte"""
+reference = """Kategorie: Termin & Frist.
+Verhandlung am 22.07.2027 um 10:30 Uhr im Amtsgericht Potsdam, Saal 214, Aktenzeichen 12 C 345/27.
+Das persönliche Erscheinen der Mandantin Frau Lehmann ist angeordnet: Termin eintragen, die Mandantin sofort informieren und auf das mögliche Ordnungsgeld hinweisen."""
+counterexample = """Kategorie: Anfrage. Das Gericht fragt nach einem Termin am 22.07.2027 um 10:30 Uhr."""
+
+[[checks]]
+name = "Kategorie Termin & Frist"
+type = "contains"
+any = ['Termin\s*(&|und)\s*Frist']
+critical = true
+
+[[checks]]
+name = "keine falsche Kategorie"
+type = "absent"
+any = ['Kategorie:?\s*"?(Rechnung|Anfrage|Werbung)']
+critical = true
+
+[[checks]]
+name = "Datum 22.07.2027"
+type = "date"
+value = "2027-07-22"
+critical = true
+
+[[checks]]
+name = "Uhrzeit 10:30"
+type = "contains"
+any = ['10[.:]30']
+critical = true
+
+[[checks]]
+name = "Saal 214"
+type = "contains"
+any = ['Saal 214']
+
+[[checks]]
+name = "Aktenzeichen 12 C 345/27"
+type = "contains"
+any = ['12 C 345/27']
+
+[[checks]]
+name = "persönliches Erscheinen angeordnet"
+type = "contains"
+any = ['persönlich\w* Erscheinen', 'persönlich (erscheinen|kommen)']
+critical = true
