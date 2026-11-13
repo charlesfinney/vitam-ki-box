@@ -1,8 +1,8 @@
-# Vita Concierge: draft website
+# Vita AI Concierge: draft website
 
 Nov 6, 2026 · Charles Finney +1 (332) 249-3276
 
-Draft website for Vita Concierge, your own AI in a case, to accompany the proposal. The repo keeps its old name (`vitam-ki-box`) so the shared link stays the same. For the team and early investors. Not a live shop: the order form is a demo and sends nothing.
+Draft website for Vita AI Concierge, your own AI in a case, to accompany the proposal. The repo keeps its old name (`vitam-ki-box`) so the shared link stays the same. For the team and early investors. Not a live shop: the order form is a demo and sends nothing.
 
 Live: https://charlesfinney.github.io/vitam-ki-box/ (German), `/en/` (English) and `/uk/` (Ukrainian; the switcher shows "UA"). All pages carry `noindex`, so search engines leave the draft alone.
 

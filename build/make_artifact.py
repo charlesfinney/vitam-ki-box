@@ -94,7 +94,7 @@ img {{ max-width: 100%; }}
 '''
 
 # 1) Artifact fragment
-artifact = '<title>Vita Concierge</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n' + style + body
+artifact = '<title>Vita AI Concierge</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n' + style + body
 (here / 'vitam-box-landing.html').write_text(artifact)
 
 # 2) Standalone document: reuse index.html's own <head> metadata, swap the stylesheet link for the inline style
